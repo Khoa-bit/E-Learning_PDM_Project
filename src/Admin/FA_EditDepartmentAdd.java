@@ -133,6 +133,7 @@ public class FA_EditDepartmentAdd extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToDepartment();
     }//GEN-LAST:event_btnCancelActionPerformed
 
 

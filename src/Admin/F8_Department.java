@@ -169,18 +169,22 @@ public class F8_Department extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToHome();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditMajor();
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditDepartmentAdd();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnMajorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajorsActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToMajor();
     }//GEN-LAST:event_btnMajorsActionPerformed
 
     private void btnMajors1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajors1ActionPerformed
