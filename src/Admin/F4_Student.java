@@ -155,7 +155,7 @@ public class F4_Student extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        MainAdmin.goToHome();
+        MainAdmin.goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditScoreActionPerformed

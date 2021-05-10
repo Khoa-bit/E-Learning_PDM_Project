@@ -6,6 +6,8 @@
 package Admin;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.util.Stack;
 
 /**
  *
@@ -13,6 +15,8 @@ import javax.swing.JFrame;
  */
 public class MainAdmin {
     private static final JFrame frame = new JFrame("JFrame Example");
+    private static Stack<JPanel> panelStack = new Stack();
+    
     private static final F1_HomePage f1_HomePage = new F1_HomePage();
     private static final F2_Lecturer f2_Lecturer = new F2_Lecturer();
     private static final F3_EditLecturer f3_EditLecturerDetail = new F3_EditLecturer();
@@ -41,129 +45,92 @@ public class MainAdmin {
         goToHome();
     }
 
-    public static void goToHome() {
+    public static void goToPanel(JPanel panel) {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(f1_HomePage);
+        frame.getContentPane().add(panel);
         frame.getContentPane().revalidate();
         frame.repaint();
+        
+        panelStack.push(panel);
+        System.out.println(panelStack);
+    }
+    
+    public static void goBack() {
+        panelStack.pop();
+//        System.out.println("Going Back");
+//        System.out.println(panelStack);
+        goToPanel(panelStack.pop());
+    }
+
+    public static void goToHome() {
+        goToPanel(f1_HomePage);
     }
 
     public static void goToLecturer() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(f2_Lecturer);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(f2_Lecturer);
     }
     
     public static void goToEditLecturerDetail() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(f3_EditLecturerDetail);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(f3_EditLecturerDetail);
     }
 
     public static void goToStudent() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(f4_Student);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(f4_Student);
     }
     
     public static void goToEditStudent() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(f5_EditStudent);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(f5_EditStudent);
     }
 
     public static void goToEditScoreDetail() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(f6_EditScoreDetail);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(f6_EditScoreDetail);
     }
     
     public static void goToSemester() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(f8_Semester);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(f8_Semester);
     }
     
     public static void goToEditSemester() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(f9_EditSemester);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(f9_EditSemester);
     }
     
     public static void goToEditSemesterAdd() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fA_EditSemesterAdd);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fA_EditSemesterAdd);
     }
 
     public static void goToDepartment() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fB_Department);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fB_Department);
     }
     
     public static void goToEditDepartment() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fC_EditDepartment);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fC_EditDepartment);
     }
     
     public static void goToEditDepartmentAdd() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fD_EditDepartmentAdd);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fD_EditDepartmentAdd);
     }
 
     public static void goToMajor() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fE_Major);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fE_Major);
     }
     
     public static void goToEditMajor() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fF_EditMajor);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fF_EditMajor);
     }
     
     public static void goToEditMajorAdd() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fG_EditMajorAdd);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fG_EditMajorAdd);
     }
     
     public static void goToSubject(){
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fH_Subject);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fH_Subject);
     }
     
     public static void goToEditSubject(){
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fI_EditSubject);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fI_EditSubject);
     }
     
     public static void goToEditSubjectDetail(){
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(fJ_EditSubjectAdd);
-        frame.getContentPane().revalidate();
-        frame.repaint();
+        goToPanel(fJ_EditSubjectAdd);
     }
 }
