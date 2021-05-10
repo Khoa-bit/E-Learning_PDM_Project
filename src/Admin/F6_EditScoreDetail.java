@@ -9,12 +9,12 @@ package Admin;
  *
  * @author doquangminh
  */
-public class FE_EditScoreDetail extends javax.swing.JPanel {
+public class F6_EditScoreDetail extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public FE_EditScoreDetail() {
+    public F6_EditScoreDetail() {
         initComponents();
     }
 

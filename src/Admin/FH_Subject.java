@@ -12,12 +12,12 @@ import javax.swing.JFrame;
  * @author doquangminh
  */
 
-public class F5_Semester extends javax.swing.JPanel {
+public class FH_Subject extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public F5_Semester() {
+    public FH_Subject() {
 
 
         initComponents();
@@ -45,7 +45,7 @@ public class F5_Semester extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
-        jLabel1.setText("Semester");
+        jLabel1.setText("Subject");
 
         jTable1.setFont(new java.awt.Font("SF Pro Text", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -56,7 +56,7 @@ public class F5_Semester extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Semester ID", "Semester name", "Date"
+                "Subject ID", "Subject name", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

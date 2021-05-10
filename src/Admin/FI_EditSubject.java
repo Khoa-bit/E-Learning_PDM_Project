@@ -9,12 +9,12 @@ package Admin;
  *
  * @author doquangminh
  */
-public class F6_EditSemester extends javax.swing.JPanel {
+public class FI_EditSubject extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public F6_EditSemester() {
+    public FI_EditSubject() {
         initComponents();
     }
 
@@ -43,7 +43,7 @@ public class F6_EditSemester extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 0, 32)); // NOI18N
-        jLabel1.setText("Semester ID");
+        jLabel1.setText("Subject ID");
 
         btnSave.setBackground(new java.awt.Color(0, 153, 255));
         btnSave.setFont(new java.awt.Font("SF Pro", 0, 18)); // NOI18N
@@ -74,10 +74,10 @@ public class F6_EditSemester extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
-        jLabel2.setText("Semester");
+        jLabel2.setText("Subject");
 
         jLabel3.setFont(new java.awt.Font("SF Pro Display", 0, 32)); // NOI18N
-        jLabel3.setText("Semester name");
+        jLabel3.setText("Subject name");
 
         jLabel11.setFont(new java.awt.Font("SF Pro Display", 0, 32)); // NOI18N
         jLabel11.setText("From");
@@ -90,7 +90,7 @@ public class F6_EditSemester extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
+                .addContainerGap(228, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -126,7 +126,7 @@ public class F6_EditSemester extends javax.swing.JPanel {
                         .addGap(211, 211, 211))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(431, Short.MAX_VALUE)
+                    .addContainerGap(483, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addGap(410, 410, 410)))
         );
