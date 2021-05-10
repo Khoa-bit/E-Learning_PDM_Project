@@ -9,12 +9,12 @@ package Admin;
  *
  * @author doquangminh
  */
-public class EditLecturer extends javax.swing.JPanel {
+public class EditStudent extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public EditLecturer() {
+    public EditStudent() {
         initComponents();
     }
 
