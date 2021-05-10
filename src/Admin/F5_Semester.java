@@ -11,12 +11,15 @@ import javax.swing.JFrame;
  *
  * @author doquangminh
  */
+
 public class F5_Semester extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
     public F5_Semester() {
+
+
         initComponents();
     }
 
