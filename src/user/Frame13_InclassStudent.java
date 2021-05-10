@@ -39,7 +39,7 @@ public class Frame13_InclassStudent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("<Teacher name>        -           <Room>                     -                       <Date>");
+        jLabel2.setText("<Student name>        -           <Room>                     -                       <Date>");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -144,7 +144,9 @@ public class Frame13_InclassStudent extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+        this.dispose();
+        Frame29_VideoListStudent frame29 = new Frame29_VideoListStudent();
+        frame29.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
