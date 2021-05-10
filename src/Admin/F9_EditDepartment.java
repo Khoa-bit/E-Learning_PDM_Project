@@ -9,12 +9,12 @@ package Admin;
  *
  * @author doquangminh
  */
-public class F5_EditSemester extends javax.swing.JPanel {
+public class F9_EditDepartment extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public F5_EditSemester() {
+    public F9_EditDepartment() {
         initComponents();
     }
 
@@ -34,16 +34,14 @@ public class F5_EditSemester extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        SearchBar1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         SearchBar2 = new javax.swing.JTextField();
-        SearchBar3 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        btnMajors = new javax.swing.JButton();
+        btnSubject = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 0, 32)); // NOI18N
-        jLabel1.setText("Semester ID");
+        jLabel1.setText("Department ID");
 
         btnSave.setBackground(new java.awt.Color(0, 153, 255));
         btnSave.setFont(new java.awt.Font("SF Pro", 0, 18)); // NOI18N
@@ -74,94 +72,83 @@ public class F5_EditSemester extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
-        jLabel2.setText("Semester");
+        jLabel2.setText("Department");
 
         jLabel3.setFont(new java.awt.Font("SF Pro Display", 0, 32)); // NOI18N
-        jLabel3.setText("Semester name");
+        jLabel3.setText("Department name");
 
-        jLabel11.setFont(new java.awt.Font("SF Pro Display", 0, 32)); // NOI18N
-        jLabel11.setText("From");
+        btnMajors.setFont(new java.awt.Font("SF Pro", 0, 18)); // NOI18N
+        btnMajors.setText("Majors");
+        btnMajors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMajorsActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setFont(new java.awt.Font("SF Pro Display", 0, 32)); // NOI18N
-        jLabel12.setText("To");
+        btnSubject.setFont(new java.awt.Font("SF Pro", 0, 18)); // NOI18N
+        btnSubject.setText("Subjects");
+        btnSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubjectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(187, 187, 187)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addGap(18, 18, 18)
-                            .addComponent(SearchBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(471, 471, 471))
+                            .addComponent(jLabel1)
+                            .addGap(64, 64, 64)
+                            .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(101, 101, 101)
-                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel12)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(SearchBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(211, 211, 211)))))
+                                    .addComponent(btnMajors, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(50, 50, 50)
+                                    .addComponent(btnSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SearchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(SearchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(64, 64, 64)
-                                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(211, 211, 211))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(431, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(410, 410, 410)))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(187, 187, 187)
+                .addGap(85, 85, 85)
+                .addComponent(jLabel2)
+                .addGap(117, 117, 117)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(SearchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel12)
-                        .addComponent(SearchBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addComponent(SearchBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(132, 132, 132)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMajors, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(123, 123, 123)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(155, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(85, 85, 85)
-                    .addComponent(jLabel2)
-                    .addContainerGap(591, Short.MAX_VALUE)))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -177,18 +164,24 @@ public class F5_EditSemester extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnMajorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajorsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMajorsActionPerformed
+
+    private void btnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSubjectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SearchBar;
-    private javax.swing.JTextField SearchBar1;
     private javax.swing.JTextField SearchBar2;
-    private javax.swing.JTextField SearchBar3;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnMajors;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSubject;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables

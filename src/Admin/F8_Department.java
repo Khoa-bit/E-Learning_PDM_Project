@@ -187,13 +187,7 @@ public class F8_Department extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMajors1ActionPerformed
 
-    public static void main(String[] args) {
-        JFrame f = new JFrame();
-        EditStudent ed = new EditStudent();
-        f.add(ed);
-        f.setSize(1000,720);    
-        f.setVisible(true);
-    }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SearchBar;
     private javax.swing.JButton btnAdd;

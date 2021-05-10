@@ -35,6 +35,7 @@ public class F1_HomePage extends javax.swing.JPanel {
         btnLogOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnMajor = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -91,7 +92,15 @@ public class F1_HomePage extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Home page");
+        jLabel2.setText("Home");
+
+        btnMajor.setFont(new java.awt.Font("SF Pro", 0, 18)); // NOI18N
+        btnMajor.setText("Major");
+        btnMajor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMajorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,7 +120,8 @@ public class F1_HomePage extends javax.swing.JPanel {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMajor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(130, 130, 130))
         );
         layout.setVerticalGroup(
@@ -129,7 +139,8 @@ public class F1_HomePage extends javax.swing.JPanel {
                 .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMajor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
@@ -160,6 +171,10 @@ public class F1_HomePage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void btnMajorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMajorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditDepartment;
@@ -168,6 +183,7 @@ public class F1_HomePage extends javax.swing.JPanel {
     private javax.swing.JButton btnEditStudent;
     private javax.swing.JButton btnEditSubject;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnMajor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

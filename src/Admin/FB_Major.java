@@ -11,12 +11,12 @@ import javax.swing.JFrame;
  *
  * @author doquangminh
  */
-public class F8_Department extends javax.swing.JPanel {
+public class FB_Major extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public F8_Department() {
+    public FB_Major() {
         initComponents();
     }
 
@@ -37,14 +37,13 @@ public class F8_Department extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnMajors = new javax.swing.JButton();
         btnMajors1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
-        jLabel1.setText("Department");
+        jLabel1.setText("Major");
 
         jTable1.setFont(new java.awt.Font("SF Pro Text", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -55,7 +54,7 @@ public class F8_Department extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Department ID", "Department name", "Dean"
+                "Major ID", "Major name", "Department"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -92,14 +91,6 @@ public class F8_Department extends javax.swing.JPanel {
             }
         });
 
-        btnMajors.setFont(new java.awt.Font("SF Pro", 0, 18)); // NOI18N
-        btnMajors.setText("Majors");
-        btnMajors.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMajorsActionPerformed(evt);
-            }
-        });
-
         btnMajors1.setFont(new java.awt.Font("SF Pro", 0, 18)); // NOI18N
         btnMajors1.setText("Subjects");
         btnMajors1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +99,7 @@ public class F8_Department extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IT", "EE", "BA", "ISE" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -127,8 +118,6 @@ public class F8_Department extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnMajors, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btnMajors1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,7 +127,7 @@ public class F8_Department extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(401, 401, 401))
+                .addGap(453, 453, 453))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +146,6 @@ public class F8_Department extends javax.swing.JPanel {
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMajors, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMajors1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
@@ -179,27 +167,15 @@ public class F8_Department extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnMajorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajorsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMajorsActionPerformed
-
     private void btnMajors1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajors1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMajors1ActionPerformed
 
-    public static void main(String[] args) {
-        JFrame f = new JFrame();
-        EditStudent ed = new EditStudent();
-        f.add(ed);
-        f.setSize(1000,720);    
-        f.setVisible(true);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SearchBar;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnMajors;
     private javax.swing.JButton btnMajors1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> jComboBox1;
