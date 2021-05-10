@@ -9,12 +9,12 @@ package Admin;
  *
  * @author doquangminh
  */
-public class F5_EditSemester extends javax.swing.JPanel {
+public class F6_EditSemester extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public F5_EditSemester() {
+    public F6_EditSemester() {
         initComponents();
     }
 
