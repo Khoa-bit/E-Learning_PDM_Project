@@ -22,7 +22,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="228" max="32767" attributes="0"/>
+              <EmptySpace pref="242" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -39,7 +39,7 @@
                                   <Component id="btnSave" min="-2" pref="150" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                                   <Component id="btnDelete" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="209" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
@@ -69,11 +69,7 @@
               </Group>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="483" max="32767" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="410" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLabel2" alignment="0" pref="1020" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -183,6 +179,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SF Pro Display" size="36" style="1"/>
         </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Subject"/>
       </Properties>
     </Component>
