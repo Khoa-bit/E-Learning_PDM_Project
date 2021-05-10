@@ -165,6 +165,7 @@ public class F4_Student extends javax.swing.JPanel {
 
     private void btnEditInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditInformationActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditStudent();
     }//GEN-LAST:event_btnEditInformationActionPerformed
 
    

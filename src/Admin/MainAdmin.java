@@ -17,10 +17,10 @@ public class MainAdmin {
     private static final F2_Lecturer f2_Lecturer = new F2_Lecturer();
     private static final F3_EditLecturer f3_EditLecturerDetail = new F3_EditLecturer();
     private static final F4_Student f4_Student = new F4_Student();
-    private static F5_EditStudent f5_EditStudent = new F5_EditStudent();
-    private static F6_EditScoreDetail f6_EditScoreDetail = new F6_EditScoreDetail();
-    private static F8_Semester f8_Semester = new F8_Semester();
-    private static F9_EditSemester f9_EditSemester = new F9_EditSemester();
+    private static final F5_EditStudent f5_EditStudent = new F5_EditStudent();
+    private static final F6_EditScoreDetail f6_EditScoreDetail = new F6_EditScoreDetail();
+    private static final F8_Semester f8_Semester = new F8_Semester();
+    private static final F9_EditSemester f9_EditSemester = new F9_EditSemester();
     private static final FA_EditSemesterAdd fA_EditSemesterAdd = new FA_EditSemesterAdd();
     private static final FB_Department fB_Department = new FB_Department();
     private static final FC_EditDepartment fC_EditDepartment = new FC_EditDepartment();
@@ -28,9 +28,9 @@ public class MainAdmin {
     private static final FE_Major fE_Major = new FE_Major();
     private static final FF_EditMajor fF_EditMajor = new FF_EditMajor();
     private static final FG_EditMajorAdd fG_EditMajorAdd = new FG_EditMajorAdd();
-    private static FH_Subject fH_Subject = new FH_Subject();
-    private static FI_EditSubject fI_EditSubject = new FI_EditSubject();
-    private static FJ_EditSubjectAdd fJ_EditSubjectAdd = new FJ_EditSubjectAdd();
+    private static final FH_Subject fH_Subject = new FH_Subject();
+    private static final FI_EditSubject fI_EditSubject = new FI_EditSubject();
+    private static final FJ_EditSubjectAdd fJ_EditSubjectAdd = new FJ_EditSubjectAdd();
 
     public static void main(String[] args){  
         frame.setSize(1000, 720);

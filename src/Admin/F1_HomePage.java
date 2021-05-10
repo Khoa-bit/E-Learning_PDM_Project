@@ -169,6 +169,7 @@ public class F1_HomePage extends javax.swing.JPanel {
 
     private void btnEditSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSubjectActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToSubject();
     }//GEN-LAST:event_btnEditSubjectActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed

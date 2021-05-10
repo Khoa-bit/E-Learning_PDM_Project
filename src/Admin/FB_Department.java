@@ -189,6 +189,7 @@ public class FB_Department extends javax.swing.JPanel {
 
     private void btnMajors1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajors1ActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToSubject();
     }//GEN-LAST:event_btnMajors1ActionPerformed
 
  
