@@ -155,14 +155,17 @@ public class F4_Student extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditScoreActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditScoreDetail();
     }//GEN-LAST:event_btnEditScoreActionPerformed
 
     private void btnEditInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditInformationActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditStudent();
     }//GEN-LAST:event_btnEditInformationActionPerformed
 
    

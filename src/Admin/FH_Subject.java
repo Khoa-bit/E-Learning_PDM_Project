@@ -12,12 +12,12 @@ import javax.swing.JFrame;
  * @author doquangminh
  */
 
-public class F5_Semester extends javax.swing.JPanel {
+public class FH_Subject extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public F5_Semester() {
+    public FH_Subject() {
 
 
         initComponents();
@@ -45,7 +45,7 @@ public class F5_Semester extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
-        jLabel1.setText("Semester");
+        jLabel1.setText("Subject");
 
         jTable1.setFont(new java.awt.Font("SF Pro Text", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -56,7 +56,7 @@ public class F5_Semester extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Semester ID", "Semester name", "Date"
+                "Subject ID", "Subject name", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -130,7 +130,7 @@ public class F5_Semester extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel1)
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -144,7 +144,7 @@ public class F5_Semester extends javax.swing.JPanel {
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,6 +158,7 @@ public class F5_Semester extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -166,6 +167,7 @@ public class F5_Semester extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditSemesterAdd();
     }//GEN-LAST:event_btnAddActionPerformed
 
    

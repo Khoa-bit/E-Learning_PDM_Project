@@ -149,22 +149,27 @@ public class F1_HomePage extends javax.swing.JPanel {
 
     private void btnEditStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStudentActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToStudent();
     }//GEN-LAST:event_btnEditStudentActionPerformed
 
     private void btnEditLectureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditLectureActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToLecturer();
     }//GEN-LAST:event_btnEditLectureActionPerformed
 
     private void btnEditSemesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSemesterActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToSemester();
     }//GEN-LAST:event_btnEditSemesterActionPerformed
 
     private void btnEditDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDepartmentActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToDepartment();
     }//GEN-LAST:event_btnEditDepartmentActionPerformed
 
     private void btnEditSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSubjectActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToSubject();
     }//GEN-LAST:event_btnEditSubjectActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
@@ -173,6 +178,7 @@ public class F1_HomePage extends javax.swing.JPanel {
 
     private void btnMajorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajorActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToMajor();
     }//GEN-LAST:event_btnMajorActionPerformed
 
 

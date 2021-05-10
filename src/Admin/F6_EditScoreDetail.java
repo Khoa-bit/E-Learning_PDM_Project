@@ -9,12 +9,12 @@ package Admin;
  *
  * @author doquangminh
  */
-public class FE_EditScoreDetail extends javax.swing.JPanel {
+public class F6_EditScoreDetail extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public FE_EditScoreDetail() {
+    public F6_EditScoreDetail() {
         initComponents();
     }
 
@@ -82,6 +82,7 @@ public class FE_EditScoreDetail extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed

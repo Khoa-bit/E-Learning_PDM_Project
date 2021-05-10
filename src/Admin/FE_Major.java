@@ -11,12 +11,12 @@ import javax.swing.JFrame;
  *
  * @author doquangminh
  */
-public class FB_Major extends javax.swing.JPanel {
+public class FE_Major extends javax.swing.JPanel {
 
     /**
      * Creates new form EditLecturer
      */
-    public FB_Major() {
+    public FE_Major() {
         initComponents();
     }
 
@@ -157,18 +157,22 @@ public class FB_Major extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditMajor();
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToEditMajorAdd();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnMajors1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMajors1ActionPerformed
         // TODO add your handling code here:
+        MainAdmin.goToSubject();
     }//GEN-LAST:event_btnMajors1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
