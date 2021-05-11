@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package User;
+import java.sql.*;
 
 /**
  *
@@ -94,7 +95,7 @@ public class Search {
         return SQL;
     }
     public String editStudent(String fullname, String date_of_birth, String gender, String email, String phone, String password, String student_id) {
-        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null) 
+        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null || student_id == null) 
             throw new NullPointerException("Null value");
         StringBuilder firstname = new StringBuilder();
         StringBuilder middlename = new StringBuilder();
@@ -123,7 +124,7 @@ public class Search {
         return SQL;
     }
     public String editLecturer(String fullname, String date_of_birth, String gender, String email, String phone, String password, String lecturer_id) {
-        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null) 
+        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null || lecturer_id == null) 
             throw new NullPointerException("Null value");
         StringBuilder firstname = new StringBuilder();
         StringBuilder middlename = new StringBuilder();
@@ -160,23 +161,54 @@ public class Search {
     }
     */
     
-    public String loginStudent(String username, String password) {
+    public String addLoginStudent(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
         SQL = "Insert into student_username (student_id, password) Values (" + username + ", " + password + ")";
         return SQL;
     }
-    public String loginLecturer(String username, String password) {
+    public String addLoginLecturer(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
         SQL = "Insert into lecturer_username (student_id, password) Values (" + username + ", " + password + ")";
         return SQL;
     }
+    public boolean loginStudent(String username, String password) {
+        if (username == null || password == null) {
+            throw new NullPointerException("Null values");
+        }
+        String connectionUrl = connectDB("sa", "12345");
+        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+            SQL = "Select * From student_username Where student_id Like " + "'" + username 
+                    + "'";
+            ResultSet rs = stmt.executeQuery(SQL);
+            if (rs.getObject(2) == password)
+                return true;
+        }
+        catch (SQLException e) {
+            System.out.println("Faulty");
+        }
+        return false;
+    }
+    public boolean loginLecture(String username, String password) {
+        String connectionUrl = connectDB("sa", "12345");
+        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+            SQL = "Select * From lecturer_username Where lecturer_id Like " + "'" + username 
+                    + "'";
+            ResultSet rs = stmt.executeQuery(SQL);
+            if (rs.getObject(2) == password)
+                return true;
+        }
+        catch (SQLException e) {
+            System.out.println("Faulty");
+        }
+        return false;
+    }
     
     public String connectDB(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
-        SQL = "jdbc:mysql://localhost=1434;databaseName=Student;user=" + username + ";password=" + password;
+        SQL = "jdbc:mysql://localhost=1434;databaseName=Student;user=" + username + ";password=" + password; //Student is placeholder
         return SQL;
     }
     /*
