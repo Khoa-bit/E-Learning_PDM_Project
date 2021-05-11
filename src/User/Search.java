@@ -69,19 +69,19 @@ public class Search {
     public String addReference(String Link, String Note) {
         if (Link == null || Note == null) 
             throw new NullPointerException("Null value");
-        SQL = "Insert into Reference (Link, Note) Values (" + Link + ", " + Note + ");";  //Reference is the placeholder table name
+        SQL = "Insert into reference (Link, Note) Values (" + Link + ", " + Note + ");";  //Reference is the placeholder table name
         return SQL;
     }
     public String deleteReference(String Link) {
         if (Link == null) 
             throw new NullPointerException("Null value");
-        SQL = "Delete From Reference Where Link = '" + Link + "'";
+        SQL = "Delete From reference Where Link = '" + Link + "'";
         return SQL;
     }
     public String editReference(String Link, String Note) {
         if (Link == null || Note == null) 
             throw new NullPointerException("Null value");
-        SQL = "Update Reference Set Note = " + Note + " Where Link = " + Link;
+        SQL = "Update reference Set Note = " + Note + " Where Link = " + Link;
         return SQL;
     }
     
@@ -89,8 +89,66 @@ public class Search {
     public String editScore(String subject, String inclass, String midterm, String finals) {
         if (subject == null || inclass == null || midterm == null || finals == null) 
             throw new NullPointerException("Null value");
-        SQL = "Update ScoreList Set In-class = " + inclass + ", Midterm = " + 
+        SQL = "Update score Set In-class = " + inclass + ", Midterm = " + 
                 midterm + ", Finals = " + finals + " Where Subject = '" + subject + "'";
+        return SQL;
+    }
+    public String editStudent(String fullname, String date_of_birth, String gender, String email, String phone, String password, String student_id) {
+        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null) 
+            throw new NullPointerException("Null value");
+        StringBuilder firstname = new StringBuilder();
+        StringBuilder middlename = new StringBuilder();
+        StringBuilder lastname = new StringBuilder();
+        int i = 0;
+        for (; fullname.charAt(i) == ' '; i++) {
+            firstname.append(fullname.charAt(i));
+        }
+        i++;
+        for (; fullname.charAt(i) == ' '; i++) {
+            middlename.append(fullname.charAt(i));
+        }
+        if (i == fullname.length() - 1) {
+            lastname = middlename;
+            middlename = middlename.delete(0, 100);
+        }
+        else {
+            for (; i < fullname.length(); i++) {
+                lastname.append(fullname.charAt(i));
+            }
+        }
+        SQL = "Begin Transaction; Update student Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
+                + ", last_name = " + lastname.toString() + ", gender = " + gender + ", date_birth = " + date_of_birth + ", email = " + email + ", phone = "
+                + phone + " Where student_id = " + student_id + "; Update student_username Set password = " + password 
+                + " Where student_id = " + student_id + "; Commit;";
+        return SQL;
+    }
+    public String editLecturer(String fullname, String date_of_birth, String gender, String email, String phone, String password, String lecturer_id) {
+        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null) 
+            throw new NullPointerException("Null value");
+        StringBuilder firstname = new StringBuilder();
+        StringBuilder middlename = new StringBuilder();
+        StringBuilder lastname = new StringBuilder();
+        int i = 0;
+        for (; fullname.charAt(i) == ' '; i++) {
+            firstname.append(fullname.charAt(i));
+        }
+        i++;
+        for (; fullname.charAt(i) == ' '; i++) {
+            middlename.append(fullname.charAt(i));
+        }
+        if (i == fullname.length() - 1) {
+            lastname = middlename;
+            middlename = middlename.delete(0, 100);
+        }
+        else {
+            for (; i < fullname.length(); i++) {
+                lastname.append(fullname.charAt(i));
+            }
+        }
+        SQL = "Begin Transaction; Update lecturer Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
+                + ", last_name = " + lastname + ", gender = " + gender + ", date_birth = " + date_of_birth + ", email = " + email + ", phone = "
+                + phone + " Where lecturer_id = " + lecturer_id + "; Update lecturer_username Set password = " + password 
+                + " Where lecturer_id = " + lecturer_id + "; Commit;";
         return SQL;
     }
     /*
@@ -105,20 +163,35 @@ public class Search {
     public String loginStudent(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
+        SQL = "Insert into student_username (student_id, password) Values (" + username + ", " + password + ")";
+        return SQL;
+    }
+    public String loginLecturer(String username, String password) {
+        if (username == null || password == null) 
+            throw new NullPointerException("Null value");
+        SQL = "Insert into lecturer_username (student_id, password) Values (" + username + ", " + password + ")";
+        return SQL;
+    }
+    
+    public String connectDB(String username, String password) {
+        if (username == null || password == null) 
+            throw new NullPointerException("Null value");
         SQL = "jdbc:mysql://localhost=1434;databaseName=Student;user=" + username + ";password=" + password;
         return SQL;
     }
+    /*
     public String loginLecturer(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
         SQL = "jdbc:mysql://localhost=1434;databaseName=Lecturer;user=" + username + ";password=" + password;
         return SQL;
     }
+*/
     
     public String addVideo(String Title, String Note) {
         if (Title == null || Note == null) 
             throw new NullPointerException("Null value");
-        SQL = "Insert into Video (Title, Note) Values (" + Title + ", " + Note + ");";  //Video is the placeholder table name
+        SQL = "Insert into video (Title, Note) Values (" + Title + ", " + Note + ");";  //Video is the placeholder table name
         return SQL;
     }
 }
