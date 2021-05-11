@@ -13,12 +13,12 @@ public class Search {
     String SQL = new String();
     
     public String searchAll(String Table_name, String Ordered_column) {
+        if (Table_name == null)
+                throw new NullPointerException("Table_name is null");
         if (Ordered_column == null)
             SQL = "Select * From " + Table_name;
         else {
-            if (Table_name == null)
-                throw new NullPointerException("Table_name is null");
-            SQL = "Select * From " + Table_name + " Ordered by " + Ordered_column;
+            SQL = "Select * From " + Table_name + " Ordered by " + Ordered_column + " ASC";
         }
         return SQL;
     }
