@@ -15,7 +15,7 @@ import java.util.Stack;
  */
 public class MainAdmin {
     private static final JFrame frame = new JFrame("JFrame Example");
-    private static Stack<JPanel> panelStack = new Stack();
+    private static final Stack<JPanel> panelStack = new Stack();
     
     private static final F1_HomePage f1_HomePage = new F1_HomePage();
     private static final F2_Lecturer f2_Lecturer = new F2_Lecturer();
@@ -57,8 +57,6 @@ public class MainAdmin {
     
     public static void goBack() {
         panelStack.pop();
-//        System.out.println("Going Back");
-//        System.out.println(panelStack);
         goToPanel(panelStack.pop());
     }
 
@@ -130,7 +128,7 @@ public class MainAdmin {
         goToPanel(fI_EditSubject);
     }
     
-    public static void goToEditSubjectDetail(){
+    public static void goToEditSubjectAdd(){
         goToPanel(fJ_EditSubjectAdd);
     }
 }
