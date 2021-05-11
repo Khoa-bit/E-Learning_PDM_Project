@@ -32,6 +32,11 @@ public class Search {
         }
         return SQL;
     }
+    public String searchSort(String Table_name, String Column_name, String Search_txt, String Sort_criteria) {
+        SQL = search(Table_name, Column_name, Search_txt);
+        SQL += " Order by " + Sort_criteria;
+        return SQL;
+    }
     public String getColumn(String Table_name, String Column_name) {
         if (Column_name == null) {
             SQL = searchAll(Table_name, null);
@@ -41,6 +46,11 @@ public class Search {
                 throw new NullPointerException("Table_name is null");
             SQL = "Select " + Column_name + " From " + Table_name;
         }
+        return SQL;
+    }
+    public String getColumnSort(String Table_name, String Column_name, String Sort_criteria) {
+        SQL = getColumn(Table_name, Column_name);
+        SQL += " Order by " + Sort_criteria;
         return SQL;
     }
     public String getValue(String Table_name, String Column_name, String value) {
