@@ -52,12 +52,25 @@ public class MainUser {
     
    
     public static void main(String[] args){
+        
+        //Test Display Database
+        ConnectMySQL c = new ConnectMySQL();
+        
+        System.out.println("Print out table Department");
+        c.run_query("SELECT * FROM Department");
+        
+        System.out.println("***********************************************");
+        System.out.println("Print out table Major");
+        c.run_query("SELECT * FROM Major");
+        
+        //---------------------------------------------------------------------
         frame.setSize(1000, 720);
         frame.setLocationRelativeTo(null);  
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         frame.setVisible(true);
         
         goToIntro();
+        
     }
     
     public static void goToPanel(JPanel panel) {
