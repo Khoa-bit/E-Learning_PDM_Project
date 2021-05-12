@@ -62,7 +62,7 @@ public class Search {
         else {
             if (Table_name == null)
                 throw new NullPointerException("Table_name is null");
-            SQL = "Select * From " + Table_name + " Where " + Column_name + " = " + value;
+            SQL = "Select * From " + Table_name + " Where " + Column_name + " = '" + value + "'";
         }
         return SQL;
     }
@@ -71,7 +71,7 @@ public class Search {
     public String addReference(String Link, String Note) {
         if (Link == null || Note == null) 
             throw new NullPointerException("Null value");
-        SQL = "Insert into reference (Link, Note) Values (" + Link + ", " + Note + ");";  //Reference is the placeholder table name
+        SQL = "Insert into reference (Link, Note) Values ('" + Link + "', '" + Note + "');";  //Reference is the placeholder table name
         return SQL;
     }
     public String deleteReference(String Link) {
@@ -83,7 +83,7 @@ public class Search {
     public String editReference(String Link, String Note) {
         if (Link == null || Note == null) 
             throw new NullPointerException("Null value");
-        SQL = "Update reference Set Note = " + Note + " Where Link = " + Link;
+        SQL = "Update reference Set Note = '" + Note + "' Where Link = '" + Link + "'";
         return SQL;
     }
     public String editScore(String class_id, String student_id, String inclass, String midterm, String finals,
@@ -95,40 +95,41 @@ public class Search {
         boolean hasOne = false;
         str.append("Update score Set ");
         if (inclass != null) {
-            str.append("in_class_score = ").append(inclass);
+            str.append("in_class_score = '").append(inclass).append("'");
             hasOne = true;
         }
         if (midterm != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("midterm_score = ").append(midterm);
+            str.append("midterm_score = '").append(midterm).append("'");
             hasOne = true;
         }
         if (finals != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("final_score = ").append(finals);
+            str.append("final_score = '").append(finals).append("'");
             hasOne = true;
         }
         if (inclass_percentage != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("in_class_percentage = ").append(inclass_percentage);
+            str.append("in_class_percentage = '").append(inclass_percentage).append("'");
             hasOne = true;
         }
         if (midterm_percentage != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("midterm_percentage = ").append(midterm_percentage);
+            str.append("midterm_percentage = '").append(midterm_percentage).append("'");
             hasOne = true;
         }
         if (final_percentage != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("final_percentage = ").append(final_percentage);
+            str.append("final_percentage = '").append(final_percentage).append("'");
             hasOne = true;
         }
-        str.append(" Where class_id = ").append(class_id).append(" AND student_id = ").append(student_id);
+        str.append(" Where class_id = '").append(class_id).append("'").append(" AND student_id = '")
+                .append(student_id).append("'");
         return str.toString();
     }
     public String editStudent(String fullname, String date_of_birth, String gender, String email, String phone, 
@@ -177,66 +178,67 @@ public class Search {
         str.append("Begin Transaction; Update lecturer Set");
         boolean hasOne = false;
         if (firstname.toString() != null) {
-            str.append(" first_name = ").append(firstname.toString());
+            str.append(" first_name = '").append(firstname.toString()).append("'");
             hasOne = true;
         }
         if (middlename.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("middle_name = ").append(middlename.toString());
+            str.append("middle_name = '").append(middlename.toString()).append("'");
             hasOne = true;
         }
         if (lastname.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("last_name = ").append(lastname.toString());
+            str.append("last_name = '").append(lastname.toString()).append("'");
             hasOne = true;
         }
         if (gender != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("gender = ").append(gender);
+            str.append("gender = '").append(gender).append("'");
             hasOne = true;
         }
         if (day.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("day = ").append(day.toString());
+            str.append("day = '").append(day.toString()).append("'");
             hasOne = true;
         }
         if (month.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("month = ").append(month.toString());
+            str.append("month = '").append(month.toString()).append("'");
             hasOne = true;
         }
         if (year.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("year = ").append(year.toString());
+            str.append("year = '").append(year.toString()).append("'");
             hasOne = true;
         }
         if (email != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("email = ").append(email);
+            str.append("email = '").append(email).append("'");
             hasOne = true;
         }
         if (phone != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("phone = ").append(phone);
+            str.append("phone = '").append(phone).append("'");
             hasOne = true;
         }
         if (major_id != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", major_id = ").append(major_id);
+            str.append(", major_id = '").append(major_id).append("'");
             hasOne = true;
         }
-        str.append(" Where student_id = ").append(student_id);
+        str.append(" Where student_id = '").append(student_id).append("'");
         if (password != null) {
-            str.append("; Update student_username Set password = ").append(password).append(" Where student_id = ").append(student_id);
+            str.append("; Update student_username Set password = '").append(password)
+                    .append("'").append(" Where student_id = '").append(student_id).append("'");
         }
         /*if (department_id != null)
             str.append("; Update major Set department_id = ").append(department_id).append(" Where major_id = ")
@@ -293,65 +295,66 @@ public class Search {
         boolean hasOne = false;
         str.append("Begin Transaction; Update lecturer Set");
         if (firstname.toString() != null)
-            str.append(" first_name = ").append(firstname.toString());
+            str.append(" first_name = '").append(firstname.toString()).append("'");
         if (middlename.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", middle_name = ").append(middlename.toString());
+            str.append(", middle_name = '").append(middlename.toString()).append("'");
             hasOne = true;
             
         }
         if (lastname.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", last_name = ").append(lastname.toString());
+            str.append(", last_name = '").append(lastname.toString()).append("'");
             hasOne = true;
         }
         if (gender != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", gender = ").append(gender);
+            str.append(", gender = '").append(gender).append("'");
             hasOne = true;
         }
         if (day.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(" day = ").append(day.toString());
+            str.append(" day = '").append(day.toString()).append("'");
             hasOne = true;
         }
         if (month.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", month = ").append(month.toString());
+            str.append(", month = '").append(month.toString()).append("'");
             hasOne = true;
         }
         if (year.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", year = ").append(year.toString());
+            str.append(", year = '").append(year.toString()).append("'");
             hasOne = true;
         }
         if (email != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", email = ").append(email);
+            str.append(", email = '").append(email).append("'");
             hasOne = true;
         }
         if (phone != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", phone = ").append(phone);
+            str.append(", phone = '").append(phone).append("'");
             hasOne = true;
         }
         if (department_id != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", major_id = ").append(major_id);
+            str.append(", major_id = '").append(major_id).append("'");
             hasOne = true;
         }
-        str.append(" Where lecturer_id = ").append(lecturer_id);
+        str.append(" Where lecturer_id = '").append(lecturer_id).append("'");
         if (password != null)
-            str.append("; Update lecturer_username Set password = ").append(password).append(" Where lecturer_id = ").append(lecturer_id).append("; Commit;");
+            str.append("; Update lecturer_username Set password = '").append(password).append("'")
+                    .append(" Where lecturer_id = '").append(lecturer_id).append("'").append("; Commit;");
         else
             str.append("; Commit;");
         /*SQL = "Begin Transaction; Update lecturer Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
@@ -405,40 +408,40 @@ public class Search {
         boolean hasOne = false;
         str.append("Update semester Set ");
         if (day_start.toString() != null) {
-            str.append("day_start = ").append(day_start.toString());
+            str.append("day_start = '").append(day_start.toString()).append("'");
             hasOne = true;
         }
         if (month_start.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("month_start = ").append(month_start.toString());
+            str.append("month_start = '").append(month_start.toString()).append("'");
             hasOne = true;
         }
         if (year_start.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("year_start = ").append(year_start.toString());
+            str.append("year_start = '").append(year_start.toString()).append("'");
             hasOne = true;
         }
         if (day_end.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("day_end = ").append(day_end.toString());
+            str.append("day_end = '").append(day_end.toString()).append("'");
             hasOne = true;
         }
         if (month_end.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("month_end = ").append(month_end.toString());
+            str.append("month_end = '").append(month_end.toString()).append("'");
             hasOne = true;
         }
         if (year_end.toString() != null) {
             if (hasOne)
                 str.append(", ");
-            str.append("year_end = ").append(year_end.toString());
+            str.append("year_end = '").append(year_end.toString()).append("'");
             hasOne = true;
         }
-        str.append(" Where semester_name = ").append(semester_name);
+        str.append(" Where semester_name = '").append(semester_name).append("'");
         /*SQL = "Update semester Set day_start = " + day_start + ", month_start = " + month_start + ", year_start = "
                 + year_start + ", day_end = " + day_end + ", month_end = " + month_end + ", year_end = " 
                 + year_end + " Where semester_name = " + semester_name;*/
@@ -450,13 +453,13 @@ public class Search {
     public String addLoginStudent(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
-        SQL = "Insert into student_username (student_id, password) Values (" + username + ", " + password + ")";
+        SQL = "Insert into student_username (student_id, password) Values ('" + username + "', '" + password + "')";
         return SQL;
     }
     public String addLoginLecturer(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
-        SQL = "Insert into lecturer_username (student_id, password) Values (" + username + ", " + password + ")";
+        SQL = "Insert into lecturer_username (student_id, password) Values ('" + username + "', '" + password + "')";
         return SQL;
     }
     public String addSemester(String semester_name, String date_start, String date_end) {
@@ -491,9 +494,9 @@ public class Search {
             year_end.append(date_end.charAt(i));  
         }
         SQL = "Insert into semester(semester_name, day_start, month_start, year_start, day_end, month_end, year_end) "
-                + "Values (" + semester_name + ", " + day_start.toString() + ", " + month_start.toString() + ", "
-                + year_start.toString() + ", " + day_end.toString() + ", " + month_end.toString() + ", "
-                + year_end.toString() + ")";
+                + "Values ('" + semester_name + "', '" + day_start.toString() + "', '" + month_start.toString() + "', '"
+                + year_start.toString() + "', '" + day_end.toString() + "', '" + month_end.toString() + "', '"
+                + year_end.toString() + "')";
         return SQL;
     }
             
@@ -570,7 +573,7 @@ public class Search {
     public String addVideo(String Title, String Note) {
         if (Title == null || Note == null) 
             throw new NullPointerException("Null value");
-        SQL = "Insert into video (Title, Note) Values (" + Title + ", " + Note + ");";  //Video is the placeholder table name
+        SQL = "Insert into video (Title, Note) Values ('" + Title + "', '" + Note + "');";  //Video is the placeholder table name
         return SQL;
     }
 }
