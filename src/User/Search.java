@@ -260,7 +260,7 @@ public class Search {
         if (username == null || password == null) {
             throw new NullPointerException("Null values");
         }
-        String connectionUrl = connectDB("sa", "12345");
+        String connectionUrl = connectDB("root", "12345");
         try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
             SQL = "Select * From student_username Where student_id Like " + "'" + username 
                     + "'";
@@ -274,7 +274,7 @@ public class Search {
         return false;
     }
     public boolean loginLecture(String username, String password) {
-        String connectionUrl = connectDB("sa", "12345");
+        String connectionUrl = connectDB("root", "12345");
         try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
             SQL = "Select * From lecturer_username Where lecturer_id Like " + "'" + username 
                     + "'";
