@@ -118,6 +118,22 @@ public class Search {
                 lastname.append(fullname.charAt(i));
             }
         }
+        StringBuilder day = new StringBuilder();
+        StringBuilder month = new StringBuilder();
+        StringBuilder year = new StringBuilder();
+        i = 0;
+        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+            day.append(fullname.charAt(i));
+        }
+        i++;
+        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+            month.append(fullname.charAt(i));
+        }
+        i++;
+        for (; i < date_of_birth.length() && date_of_birth != null; i++) {
+            year.append(fullname.charAt(i));  
+        }
+        
         StringBuilder str = new StringBuilder();
         str.append("Begin Transaction; Update lecturer Set");
         if (firstname != null)
@@ -128,8 +144,12 @@ public class Search {
             str.append(", last_name = ").append(lastname.toString());
         if (gender != null)
             str.append(", gender = ").append(gender);
-        if (date_of_birth != null)
-            str.append(", date_birth = ").append(date_of_birth);
+        if (day != null)
+            str.append(" day = ").append(day.toString());
+        if (month != null)
+            str.append(", month = ").append(month.toString());
+        if (year != null)
+            str.append(", year = ").append(year.toString());
         if (email != null)
             str.append(", email = ").append(email);
         if (phone != null)
@@ -169,6 +189,21 @@ public class Search {
                 lastname.append(fullname.charAt(i));
             }
         }
+        StringBuilder day = new StringBuilder();
+        StringBuilder month = new StringBuilder();
+        StringBuilder year = new StringBuilder();
+        i = 0;
+        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+            day.append(fullname.charAt(i));
+        }
+        i++;
+        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+            month.append(fullname.charAt(i));
+        }
+        i++;
+        for (; i < date_of_birth.length() && date_of_birth != null; i++) {
+            year.append(fullname.charAt(i));  
+        }
         StringBuilder str = new StringBuilder();
         str.append("Begin Transaction; Update lecturer Set");
         if (firstname != null)
@@ -179,8 +214,12 @@ public class Search {
             str.append(", last_name = ").append(lastname.toString());
         if (gender != null)
             str.append(", gender = ").append(gender);
-        if (date_of_birth != null)
-            str.append(", date_birth = ").append(date_of_birth);
+        if (day != null)
+            str.append(" day = ").append(day.toString());
+        if (month != null)
+            str.append(", month = ").append(month.toString());
+        if (year != null)
+            str.append(", year = ").append(year.toString());
         if (email != null)
             str.append(", email = ").append(email);
         if (phone != null)
