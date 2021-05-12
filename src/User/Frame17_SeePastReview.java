@@ -22,13 +22,17 @@ public class Frame17_SeePastReview extends javax.swing.JPanel {
         jTextArea1.selectAll();
         jTextArea1.replaceSelection("");
         //String connectionUrl = sr.connectDB("root", "12345Abc");
-        try (Connection con = sr.connectDB("root", "12345Abc"); Statement stmt = con.createStatement();) {
+        try /*(Connection con = sr.connectDB("root", "12345Abc"); Statement stmt = con.createStatement();)*/ {
             String SQL = sr.getColumn("rating", "note");
+            Connection con = sr.connectDB(/*"jdbc:mysql://localhost:3306/E_Learning_Platform", */"root", "12345Abc"); Statement stmt = con.createStatement();
+            //String SQL = "Select * From Rating";
             ResultSet rs = stmt.executeQuery(SQL);
             StringBuilder str = new StringBuilder();
             while (rs.next()) {
                 str.append(rs.getObject(1)).append("\n");
             }
+            //System.out.println("ABCD");
+            System.out.println(str.toString());
             jTextArea1.setText(str.toString());
         }
         catch (SQLException e) {

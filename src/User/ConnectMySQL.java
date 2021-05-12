@@ -18,7 +18,7 @@ import java.sql.Statement;
 public class ConnectMySQL {
     String DB_URL = "jdbc:mysql://localhost:3306/E_Learning_Platform";
     String USER_NAME = "root";
-    String PASSWORD = "123456";
+    String PASSWORD = "12345Abc";
     
     public static Connection getConnection(String dbURL, String userName, 
             String password) {
