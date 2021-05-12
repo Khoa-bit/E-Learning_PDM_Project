@@ -95,62 +95,106 @@ public class Search {
         return SQL;
     }
     public String editStudent(String fullname, String date_of_birth, String gender, String email, String phone, String password, String student_id) {
-        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null || student_id == null) 
+        if (fullname == null && date_of_birth == null && gender == null && email == null && password == null || student_id == null) 
             throw new NullPointerException("Null value");
         StringBuilder firstname = new StringBuilder();
         StringBuilder middlename = new StringBuilder();
         StringBuilder lastname = new StringBuilder();
         int i = 0;
-        for (; fullname.charAt(i) == ' '; i++) {
+        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
             firstname.append(fullname.charAt(i));
         }
         i++;
-        for (; fullname.charAt(i) == ' '; i++) {
+        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
             middlename.append(fullname.charAt(i));
         }
-        if (i == fullname.length() - 1) {
+        i++;
+        if (i >= fullname.length() - 1) {
             lastname = middlename;
             middlename = middlename.delete(0, 100);
         }
         else {
-            for (; i < fullname.length(); i++) {
+            for (; i < fullname.length() && fullname != null; i++) {
                 lastname.append(fullname.charAt(i));
             }
         }
-        SQL = "Begin Transaction; Update student Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
+        StringBuilder str = new StringBuilder();
+        str.append("Begin Transaction; Update lecturer Set");
+        if (firstname != null)
+            str.append(" first_name = ").append(firstname.toString());
+        if (middlename != null)
+            str.append(", middle_name = ").append(middlename.toString());
+        if (lastname != null)
+            str.append(", last_name = ").append(lastname.toString());
+        if (gender != null)
+            str.append(", gender = ").append(gender);
+        if (date_of_birth != null)
+            str.append(", date_birth = ").append(date_of_birth);
+        if (email != null)
+            str.append(", email = ").append(email);
+        if (phone != null)
+            str.append(", phone = ").append(phone);
+        str.append(" Where student_id = ").append(student_id);
+        if (password != null)
+            str.append("; Update student_username Set password = ").append(password).append(" Where student_id = ").append(student_id).append("; Commit;");
+        else
+            str.append("; Commit;");
+        /*SQL = "Begin Transaction; Update student Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
                 + ", last_name = " + lastname.toString() + ", gender = " + gender + ", date_birth = " + date_of_birth + ", email = " + email + ", phone = "
                 + phone + " Where student_id = " + student_id + "; Update student_username Set password = " + password 
-                + " Where student_id = " + student_id + "; Commit;";
-        return SQL;
+                + " Where student_id = " + student_id + "; Commit;";*/
+        return str.toString();
     }
     public String editLecturer(String fullname, String date_of_birth, String gender, String email, String phone, String password, String lecturer_id) {
-        if (fullname == null || date_of_birth == null || gender == null || email == null || password == null || lecturer_id == null) 
+        if (fullname == null && date_of_birth == null && gender == null && email == null && password == null || lecturer_id == null) 
             throw new NullPointerException("Null value");
         StringBuilder firstname = new StringBuilder();
         StringBuilder middlename = new StringBuilder();
         StringBuilder lastname = new StringBuilder();
         int i = 0;
-        for (; fullname.charAt(i) == ' '; i++) {
+        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
             firstname.append(fullname.charAt(i));
         }
         i++;
-        for (; fullname.charAt(i) == ' '; i++) {
+        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
             middlename.append(fullname.charAt(i));
         }
-        if (i == fullname.length() - 1) {
+        i++;
+        if (i >= fullname.length() - 1) {
             lastname = middlename;
             middlename = middlename.delete(0, 100);
         }
         else {
-            for (; i < fullname.length(); i++) {
+            for (; i < fullname.length() && fullname != null; i++) {
                 lastname.append(fullname.charAt(i));
             }
         }
-        SQL = "Begin Transaction; Update lecturer Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
+        StringBuilder str = new StringBuilder();
+        str.append("Begin Transaction; Update lecturer Set");
+        if (firstname != null)
+            str.append(" first_name = ").append(firstname.toString());
+        if (middlename != null)
+            str.append(", middle_name = ").append(middlename.toString());
+        if (lastname != null)
+            str.append(", last_name = ").append(lastname.toString());
+        if (gender != null)
+            str.append(", gender = ").append(gender);
+        if (date_of_birth != null)
+            str.append(", date_birth = ").append(date_of_birth);
+        if (email != null)
+            str.append(", email = ").append(email);
+        if (phone != null)
+            str.append(", phone = ").append(phone);
+        str.append(" Where lecturer_id = ").append(lecturer_id);
+        if (password != null)
+            str.append("; Update lecturer_username Set password = ").append(password).append(" Where lecturer_id = ").append(lecturer_id).append("; Commit;");
+        else
+            str.append("; Commit;");
+        /*SQL = "Begin Transaction; Update lecturer Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
                 + ", last_name = " + lastname + ", gender = " + gender + ", date_birth = " + date_of_birth + ", email = " + email + ", phone = "
                 + phone + " Where lecturer_id = " + lecturer_id + "; Update lecturer_username Set password = " + password 
-                + " Where lecturer_id = " + lecturer_id + "; Commit;";
-        return SQL;
+                + " Where lecturer_id = " + lecturer_id + "; Commit;";*/
+        return str.toString();
     }
     /*
     public String seeScoreDetail(String subject) {
