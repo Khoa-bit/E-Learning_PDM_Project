@@ -294,7 +294,7 @@ public class Search {
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost=3306/e_learning_platform", username, password);
+            conn = DriverManager.getConnection("jdbc:mysql://localhost=3306/E_Learning_Platform", username, password);
             //System.out.println("connect successfully!");
         } catch (Exception ex) {
             System.out.println("connect failure!");
