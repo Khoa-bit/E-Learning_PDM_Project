@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,23 @@ public class Frame16_HistoryLecturer extends javax.swing.JPanel {
      */
     public Frame16_HistoryLecturer() {
         initComponents();
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        String query = "SELECT * FROM Session WHERE class_id = '" 
+                + AppOpration.getAppOpration().what_class + "';";
+        
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+        
+        for(int j=0; j<infos.length/6; j++){
+            String section_id = infos[j*6 + 0];
+            String name = infos[6*j+1];
+            String date = infos[6*j+2] + "/" 
+                    + infos[6*j+3] + "/" + infos[6*j+4];
+            model.addRow(new Object[]{section_id, name,
+                date});
+        }
     }
 
     /**
@@ -50,7 +69,7 @@ public class Frame16_HistoryLecturer extends javax.swing.JPanel {
                 {"4", "22/4/2021", "4.9"}
             },
             new String [] {
-                "Week", "Date", "Rating"
+                "Section ID", "Name", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

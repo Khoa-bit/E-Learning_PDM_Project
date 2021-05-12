@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,44 @@ public class Frame9_ClassesStudent extends javax.swing.JPanel {
      */
     public Frame9_ClassesStudent() {
         initComponents();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        String query = "SELECT Class.class_id FROM Class, Student_List"
+                + " WHERE Class.semester_name = " + "'"
+                + AppOpration.getAppOpration().what_semester + "'"
+                + " AND Student_List.class_id "
+                + "= Class.class_id AND Student_List.student_id = '"
+                + AppOpration.getAppOpration().who_is_using_this_app + "';";
+
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+        for (int j = 0; j < infos.length; j++) {
+            query = "SELECT * FROM Class WHERE class_id = "
+                    + "'" + infos[j] + "';";
+            String[] infos_2 = ConnectMySQL.getConnectMySQL()
+                    .get_query(query);
+
+
+            String id = infos_2[0];
+            String room = infos_2[1];
+            String period = infos_2[2] + "-" + infos_2[3];
+            String day = infos_2[4];
+            
+            
+            query = "SELECT name FROM Subject WHERE subject_id = '" 
+                    + infos_2[5] + "';";
+            
+            String[] infos_3 = ConnectMySQL.getConnectMySQL()
+                    .get_query(query);
+            
+            String subject = infos_3[0];
+            
+            model.addRow(new Object[]{id, subject,
+                room, period, day});
+
+        }
+
     }
 
     /**
@@ -60,7 +100,7 @@ public class Frame9_ClassesStudent extends javax.swing.JPanel {
                 {"PH001", "Chemistry", "A9.009", "1 - 4", "Friday"}
             },
             new String [] {
-                "Class ID", "Class name", "Room", "Period", "Day"
+                "Class ID", "Subject name", "Room", "Period", "Day"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -151,7 +191,18 @@ public class Frame9_ClassesStudent extends javax.swing.JPanel {
 
     private void btnClassDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassDetailActionPerformed
         // TODO add your handling code here:
-        MainUser.goToOptionsStudent();
+        
+        int i = jTable1.getSelectedRow();
+        if(i != -1){
+            String class_id = String.valueOf(jTable1.getValueAt(i, 0));
+            //ManageData.getManageData().setBook_choosen(id);
+            
+            AppOpration.getAppOpration().what_class = class_id;
+            
+            MainUser.goToOptionsStudent();
+        }
+        
+        //MainUser.goToOptionsStudent();
     }//GEN-LAST:event_btnClassDetailActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

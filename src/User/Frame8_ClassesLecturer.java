@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,44 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
      */
     public Frame8_ClassesLecturer() {
         initComponents();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
+
+        } else {
+            String query = "SELECT * FROM Class WHERE lecturer_id = "
+                    + "'"
+                    + AppOpration.getAppOpration().who_is_using_this_app
+                    + "' AND Semester_name = '"
+                    + AppOpration.getAppOpration().what_semester + "';";
+            String[] infos_2 = ConnectMySQL.getConnectMySQL()
+                    .get_query(query);
+
+            if (infos_2.length > 0) {
+                for (int j = 0; j < infos_2.length / 8; j++) {
+                    String id = infos_2[8*j+0];
+                    String room = infos_2[8*j+1];
+                    String period = infos_2[8*j+2] + "-" + infos_2[8*j+3];
+                    String day = infos_2[8*j+4];
+
+                    query = "SELECT name FROM Subject WHERE subject_id = '"
+                            + infos_2[8*j+5] + "';";
+
+                    String[] infos_3 = ConnectMySQL.getConnectMySQL()
+                            .get_query(query);
+
+                    String subject = infos_3[0];
+
+                    model.addRow(new Object[]{id, subject,
+                        room, period, day});
+                }
+
+            }
+
+        }
+
     }
 
     /**
@@ -151,7 +191,18 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
 
     private void btnClassDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassDetailActionPerformed
         // TODO add your handling code here:
-        MainUser.goToOptionsLecturer();
+        
+        int i = jTable1.getSelectedRow();
+        if(i != -1){
+            String class_id = String.valueOf(jTable1.getValueAt(i, 0));
+            //ManageData.getManageData().setBook_choosen(id);
+            
+            AppOpration.getAppOpration().what_class = class_id;
+            
+            MainUser.goToOptionsLecturer();
+        }
+        
+        //MainUser.goToOptionsLecturer();
     }//GEN-LAST:event_btnClassDetailActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

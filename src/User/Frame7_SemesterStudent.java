@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,22 @@ public class Frame7_SemesterStudent extends javax.swing.JPanel {
      */
     public Frame7_SemesterStudent() {
         initComponents();
+        
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.setRowCount(0);
+        
+        String query = "SELECT * FROM Semester;";
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+        
+        for(int i=0; i<infos.length/7; i++){
+            String name = infos[7*i];
+            String date_start = infos[7*i+1] + "/" + infos[7*i+2] 
+                    + "/" + infos[7*i+3];
+            String date_end = infos[7*i+4] + "/" + infos[7*i+5] 
+                    + "/" + infos[7*i+6];
+            model.addRow( new Object[]{ name, date_start, 
+                date_end} );
+        }
     }
 
     /**
@@ -63,7 +81,7 @@ public class Frame7_SemesterStudent extends javax.swing.JPanel {
                 {"Sem_2021_1", "1-2020", null}
             },
             new String [] {
-                "Semester ID", "Semester", "Date"
+                "Semester Name", "Date start", "Date end"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -152,7 +170,19 @@ public class Frame7_SemesterStudent extends javax.swing.JPanel {
 
     private void btnSemesterDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterDetailActionPerformed
         // TODO add your handling code here:
-        MainUser.goToClassesStudent();
+        int i = jTable1.getSelectedRow();
+        if(i != -1){
+            String semester_name = String.valueOf(jTable1.getValueAt(i, 0));
+            //ManageData.getManageData().setBook_choosen(id);
+            
+            AppOpration.getAppOpration().what_semester = semester_name;
+            
+            MainUser.goToClassesStudent();
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_btnSemesterDetailActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

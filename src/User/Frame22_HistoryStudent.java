@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,23 @@ public class Frame22_HistoryStudent extends javax.swing.JPanel {
      */
     public Frame22_HistoryStudent() {
         initComponents();
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        String query = "SELECT * FROM Session WHERE class_id = '" 
+                + AppOpration.getAppOpration().what_class + "';";
+        
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+        
+        for(int j=0; j<infos.length/6; j++){
+            String section_id = infos[j*6 + 0];
+            String name = infos[6*j+1];
+            String date = infos[6*j+2] + "/" 
+                    + infos[6*j+3] + "/" + infos[6*j+4];
+            model.addRow(new Object[]{section_id, name,
+                date});
+        }
     }
 
     /**
@@ -43,16 +62,19 @@ public class Frame22_HistoryStudent extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("SF Pro Display", 0, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "1/4/2021", "3.5"},
-                {"2", "8/4/2021", "3.75"},
-                {"3", "15/4/2021", "4.0"},
-                {"4", "22/4/2021", "4.9"}
+                {null, "1", "1/4/2021"},
+                {null, "2", "8/4/2021"},
+                {null, "3", "15/4/2021"},
+                {null, "4", "22/4/2021"}
             },
             new String [] {
-                "Week", "Date", "Rating"
+                "Session ID", "Name", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jButton1.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
         jButton1.setText("Back");

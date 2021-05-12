@@ -15,7 +15,20 @@ public class Frame5_HomeStudent extends javax.swing.JPanel {
      * Creates new form Frame5_HomeStudent
      */
     public Frame5_HomeStudent() {
+
         initComponents();
+
+        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
+
+        } else {
+            String query = "SELECT * FROM Student WHERE student_id = '"
+                    + AppOpration.getAppOpration().who_is_using_this_app + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            String full_name = infos[1] + " " + infos[2] + " " + infos[3];
+            title.setText("Hi, " + full_name + "! Welcome back!");
+        }
+
     }
 
     /**
@@ -29,7 +42,7 @@ public class Frame5_HomeStudent extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -46,8 +59,8 @@ public class Frame5_HomeStudent extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Hi, <Student name>! Welcome back!");
+        title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        title.setText("Hi, <Student name>! Welcome back!");
 
         jButton2.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
         jButton2.setText("Edit your information");
@@ -82,7 +95,7 @@ public class Frame5_HomeStudent extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(259, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(title)
                 .addGap(299, 299, 299))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -92,7 +105,7 @@ public class Frame5_HomeStudent extends javax.swing.JPanel {
                 .addGap(80, 80, 80)
                 .addComponent(jLabel1)
                 .addGap(46, 46, 46)
-                .addComponent(jLabel2)
+                .addComponent(title)
                 .addGap(50, 50, 50)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
@@ -135,7 +148,7 @@ public class Frame5_HomeStudent extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

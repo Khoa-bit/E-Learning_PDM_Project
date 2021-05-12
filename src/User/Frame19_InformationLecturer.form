@@ -56,7 +56,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                                          <Component id="gender" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -67,10 +67,10 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="SearchBar3" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="SearchBar2" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="SearchBar1" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="SearchBar" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                                              <Component id="phone" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="email" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="date_of_birth" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="full_name" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -91,10 +91,10 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jPasswordField1" alignment="0" pref="270" max="32767" attributes="0"/>
-                                      <Component id="SearchBar6" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="SearchBar7" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="SearchBar4" max="32767" attributes="0"/>
+                                      <Component id="password" alignment="0" pref="270" max="32767" attributes="0"/>
+                                      <Component id="lecturer_id" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="department" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="username" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -120,34 +120,34 @@
                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="SearchBar4" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="username" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="jPasswordField1" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="password" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="SearchBar6" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="lecturer_id" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="SearchBar7" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="department" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="SearchBar" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="full_name" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="jLabel2" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="SearchBar1" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="date_of_birth" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="SearchBar2" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="email" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="jLabel4" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="SearchBar3" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="phone" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="jLabel5" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -164,7 +164,7 @@
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jComboBox1" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="gender" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -239,7 +239,7 @@
             <Property name="text" type="java.lang.String" value="Date of birth"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SearchBar1">
+        <Component class="javax.swing.JTextField" name="date_of_birth">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -249,7 +249,7 @@
             <Property name="text" type="java.lang.String" value="Email"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SearchBar2">
+        <Component class="javax.swing.JTextField" name="email">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -267,11 +267,11 @@
             <Property name="text" type="java.lang.String" value="Lecturer Information"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SearchBar3">
+        <Component class="javax.swing.JTextField" name="phone">
         </Component>
-        <Component class="javax.swing.JTextField" name="SearchBar">
+        <Component class="javax.swing.JTextField" name="full_name">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchBarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="full_nameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -282,20 +282,20 @@
             <Property name="text" type="java.lang.String" value="Gender"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="gender">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SF Pro Display" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
-                <StringItem index="0" value="Female"/>
-                <StringItem index="1" value="Male"/>
+                <StringItem index="0" value="Male"/>
+                <StringItem index="1" value="Female"/>
               </StringArray>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="genderActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -309,9 +309,9 @@
             <Property name="text" type="java.lang.String" value="Username"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SearchBar4">
+        <Component class="javax.swing.JTextField" name="username">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchBar4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -330,7 +330,7 @@
             <Property name="text" type="java.lang.String" value="Lecturer ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SearchBar6">
+        <Component class="javax.swing.JTextField" name="lecturer_id">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -340,9 +340,9 @@
             <Property name="text" type="java.lang.String" value="Department"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SearchBar7">
+        <Component class="javax.swing.JTextField" name="department">
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        <Component class="javax.swing.JPasswordField" name="password">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SF Pro Display" size="18" style="0"/>

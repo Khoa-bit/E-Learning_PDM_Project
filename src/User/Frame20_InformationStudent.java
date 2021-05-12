@@ -16,6 +16,45 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
      */
     public Frame20_InformationStudent() {
         initComponents();
+        
+        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")){
+            
+        }else{
+            String query = "SELECT * FROM Student WHERE student_id = '"
+                    + AppOpration.getAppOpration().who_is_using_this_app + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+            
+            student_id.setText(infos[0]);
+            student_id.setEditable(false);
+            full_name.setText(infos[1] + " " + infos[2] + " " + infos[3]);
+            date_of_birth.setText(infos[5] + "/" + infos[6] + "/" + infos[7]);
+            gender.setSelectedIndex(Integer.parseInt(infos[4]));
+            email.setText(infos[8]);
+            phone.setText(infos[9]);
+            major.setText(infos[10]);
+            major.setEditable(false);
+            department.setEditable(false);
+            username.setText(infos[0]);
+            
+            
+            query = "SELECT password FROM Student_Username WHERE student_id = '"
+                    + AppOpration.getAppOpration().who_is_using_this_app + "';";
+            String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
+            
+            password.setText(infos_2[0]);
+            
+            query = "SELECT * FROM Major WHERE major_id = '"
+                    + infos[10] + "';";
+            String[] infos_3 = ConnectMySQL.getConnectMySQL().get_query(query);
+            
+            major.setText(infos_3[1]);
+            
+            query = "SELECT * FROM Department WHERE department_id = '"
+                    + infos_3[2] + "';";
+            String[] infos_4 = ConnectMySQL.getConnectMySQL().get_query(query);
+            
+            department.setText(infos_4[1]);
+        }
     }
 
     /**
@@ -30,27 +69,27 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        gender = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        SearchBar4 = new javax.swing.JTextField();
+        major = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        SearchBar1 = new javax.swing.JTextField();
-        SearchBar6 = new javax.swing.JTextField();
+        date_of_birth = new javax.swing.JTextField();
+        student_id = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        SearchBar2 = new javax.swing.JTextField();
-        SearchBar7 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        department = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
-        SearchBar3 = new javax.swing.JTextField();
+        phone = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        SearchBar = new javax.swing.JTextField();
+        full_name = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        SearchBar5 = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,20 +111,20 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        gender.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
+        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        gender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                genderActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel7.setText("Major");
 
-        SearchBar4.addActionListener(new java.awt.event.ActionListener() {
+        major.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBar4ActionPerformed(evt);
+                majorActionPerformed(evt);
             }
         });
 
@@ -110,8 +149,8 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel5.setText("Phone");
 
-        jPasswordField1.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        password.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
+        password.setText("jPasswordField1");
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,18 +159,18 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel11.setText("Username");
 
-        SearchBar.addActionListener(new java.awt.event.ActionListener() {
+        full_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBarActionPerformed(evt);
+                full_nameActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel6.setText("Gender");
 
-        SearchBar5.addActionListener(new java.awt.event.ActionListener() {
+        username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBar5ActionPerformed(evt);
+                usernameActionPerformed(evt);
             }
         });
 
@@ -162,11 +201,11 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(SearchBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(SearchBar2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchBar1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchBar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(date_of_birth, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(full_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -181,11 +220,11 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
                                 .addGap(21, 21, 21)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchBar6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchBar4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchBar7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchBar5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(student_id, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(major, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(department, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(84, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -209,25 +248,25 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
                                 .addGap(25, 25, 25)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(full_name, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(SearchBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(date_of_birth, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(SearchBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(SearchBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(SearchBar5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(SearchBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(student_id, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(SearchBar7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(department, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(SearchBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(major, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
@@ -268,35 +307,31 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_genderActionPerformed
 
-    private void SearchBar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBar4ActionPerformed
+    private void majorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_majorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SearchBar4ActionPerformed
+    }//GEN-LAST:event_majorActionPerformed
 
-    private void SearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBarActionPerformed
+    private void full_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_full_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SearchBarActionPerformed
+    }//GEN-LAST:event_full_nameActionPerformed
 
-    private void SearchBar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBar5ActionPerformed
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SearchBar5ActionPerformed
+    }//GEN-LAST:event_usernameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField SearchBar;
-    private javax.swing.JTextField SearchBar1;
-    private javax.swing.JTextField SearchBar2;
-    private javax.swing.JTextField SearchBar3;
-    private javax.swing.JTextField SearchBar4;
-    private javax.swing.JTextField SearchBar5;
-    private javax.swing.JTextField SearchBar6;
-    private javax.swing.JTextField SearchBar7;
+    private javax.swing.JTextField date_of_birth;
+    private javax.swing.JTextField department;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField full_name;
+    private javax.swing.JComboBox<String> gender;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -309,6 +344,10 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField major;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField phone;
+    private javax.swing.JTextField student_id;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
