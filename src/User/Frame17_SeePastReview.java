@@ -5,6 +5,8 @@
  */
 package User;
 
+import java.sql.*;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,22 @@ public class Frame17_SeePastReview extends javax.swing.JPanel {
      */
     public Frame17_SeePastReview() {
         initComponents();
+        Search sr = new Search();
+        jTextArea1.selectAll();
+        jTextArea1.replaceSelection("");
+        //String connectionUrl = sr.connectDB("root", "12345Abc");
+        try (Connection con = sr.connectDB("root", "12345Abc"); Statement stmt = con.createStatement();) {
+            String SQL = sr.getColumn("rating", "note");
+            ResultSet rs = stmt.executeQuery(SQL);
+            StringBuilder str = new StringBuilder();
+            while (rs.next()) {
+                str.append(rs.getObject(1)).append("\n");
+            }
+            jTextArea1.setText(str.toString());
+        }
+        catch (SQLException e) {
+            jTextArea1.setText(e.getMessage());
+        }
     }
 
     /**

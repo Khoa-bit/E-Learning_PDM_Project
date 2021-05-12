@@ -260,8 +260,8 @@ public class Search {
         if (username == null || password == null) {
             throw new NullPointerException("Null values");
         }
-        String connectionUrl = connectDB("root", "12345");
-        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+        //String connectionUrl = connectDB("root", "12345Abc");
+        try (Connection con = connectDB(username, password); Statement stmt = con.createStatement();) {
             SQL = "Select * From student_username Where student_id Like " + "'" + username 
                     + "'";
             ResultSet rs = stmt.executeQuery(SQL);
@@ -274,8 +274,8 @@ public class Search {
         return false;
     }
     public boolean loginLecture(String username, String password) {
-        String connectionUrl = connectDB("root", "12345");
-        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+        //String connectionUrl = connectDB("root", "12345Abc");
+        try (Connection con = connectDB(username, password); Statement stmt = con.createStatement();) {
             SQL = "Select * From lecturer_username Where lecturer_id Like " + "'" + username 
                     + "'";
             ResultSet rs = stmt.executeQuery(SQL);
@@ -288,11 +288,21 @@ public class Search {
         return false;
     }
     
-    public String connectDB(String username, String password) {
+    public Connection connectDB(String username, String password) {
         if (username == null || password == null) 
             throw new NullPointerException("Null value");
-        SQL = "jdbc:mysql://localhost=1434;databaseName=Student;user=" + username + ";password=" + password; //Student is placeholder
-        return SQL;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost=3306/e_learning_platform", username, password);
+            //System.out.println("connect successfully!");
+        } catch (Exception ex) {
+            System.out.println("connect failure!");
+            ex.printStackTrace();
+        }
+        //SQL = "jdbc:mysql://localhost=3306/e_learning_platform/?user=" + username + "&password=" + password + "&useUnicode=true&characterEncoding=UTF-8"; //Student is placeholder
+        //SQL = "jdbc:mysql://localhost:3306/e_learning_platform?zeroDateTimeBehavior=CONVERT_TO_NULL";
+        return conn;
     }
     /*
     public String loginLecturer(String username, String password) {
