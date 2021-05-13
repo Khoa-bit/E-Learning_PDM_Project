@@ -6,6 +6,7 @@
 package Admin;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +19,33 @@ public class F4_Student extends javax.swing.JPanel {
      */
     public F4_Student() {
         initComponents();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Search sr = new Search();
+        //System.out.println(sr.searchAll("Subject", "name"));
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(sr.searchAll("Student", "student_id"));
+        //String[] infos1 = ConnectMySQL.getConnectMySQL().get_query(sr.search("Major", "major_id", major_id));
+        for(int j=0; j<infos.length/11; j++){
+            String student_id = infos[j*11 + 0];
+            String name = infos[11*j+1] + " " + infos[11*j + 2] + " " + infos[11*j + 3];
+            String gender_id = infos[11*j+4];
+            String gender = new String();
+            if (gender_id.charAt(0) == '1') 
+                gender = "Female";
+            else
+                gender = "Male";
+            String date_of_birth = infos[11*j + 5] + "/" + infos[11*j + 6] + "/" + infos[11*j + 7];
+            //String email = infos[11*j + 8];
+            //String phone = infos[11*j + 9];
+            String major_id = infos[11*j + 10];
+            String[] infos1 = ConnectMySQL.getConnectMySQL().get_query(sr.getValue("Major", "major_id", major_id));
+            String major = infos1[1];
+            String department_id = infos1[2];
+            String[] infos2 = ConnectMySQL.getConnectMySQL().get_query(sr.getValue("Department", "department_id", department_id));
+            String department = infos2[1];
+            model.addRow(new Object[]{student_id, name,
+                date_of_birth, gender, department, major});
+        }
     }
 
     /**
