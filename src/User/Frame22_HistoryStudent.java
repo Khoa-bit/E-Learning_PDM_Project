@@ -140,7 +140,18 @@ public class Frame22_HistoryStudent extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MainUser.goToInclassStudent();
+        
+        int i = jTable1.getSelectedRow();
+        if(i != -1){
+            String session_id = String.valueOf(jTable1.getValueAt(i, 0));
+            //ManageData.getManageData().setBook_choosen(id);
+            
+            AppOpration.getAppOpration().what_session = session_id;
+            
+            MainUser.goToInclassStudent();
+        }
+        
+        //MainUser.goToInclassStudent();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

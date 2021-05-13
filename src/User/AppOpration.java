@@ -15,7 +15,9 @@ public class AppOpration {
     public String who_is_using_this_app = "-";
     public String what_semester = "-";
     public String what_class = "-";
+    public String what_session = "-";
     
+    public String student_id_to_input_score = "-";
     
     
     private static final AppOpration operation = new AppOpration();

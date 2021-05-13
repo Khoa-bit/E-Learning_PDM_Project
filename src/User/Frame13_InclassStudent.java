@@ -16,6 +16,36 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
      */
     public Frame13_InclassStudent() {
         initComponents();
+        
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SElECT class_id, day, month, year FROM Session WHERE session_id = '"
+                    + AppOpration.getAppOpration().what_session + "';";
+            
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+            
+            String class_id = infos[0];
+            String date = infos[1] + "/" + infos[2] + "/" + infos[3];
+            
+            query = "SELECT room, subject_id FROM CLass WHERE class_id = '"
+                    + class_id + "';";
+            
+            String[] infos2 = ConnectMySQL.getConnectMySQL().get_query(query);
+            String room = infos2[0];
+            String subject_id = infos2[1];
+            
+            query = "SELECT name FROM Subject WHERE subject_id = '"
+                    + subject_id + "';";
+            
+            String[] infos3 = ConnectMySQL.getConnectMySQL().get_query(query);
+            String subject_name = infos3[0];
+            
+            String title_text = subject_name + "    -    " 
+                    + room + "    -    " + date;
+            
+            title.setText(title_text);
+        }
     }
 
     /**
@@ -29,7 +59,7 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
 
         jScrollBar1 = new javax.swing.JScrollBar();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
@@ -40,8 +70,8 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("<Student name>        -           <Room>                     -                       <Date>");
+        title.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        title.setText("<Student name>        -           <Room>                     -                       <Date>");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -101,7 +131,7 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -114,7 +144,7 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
                 .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(57, 57, 57)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,11 +197,11 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

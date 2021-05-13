@@ -29,7 +29,6 @@ public class Frame10_OptionsLecturer extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         btnInputScore = new javax.swing.JButton();
-        btnEnterNewClass = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnStudentList = new javax.swing.JButton();
@@ -45,16 +44,8 @@ public class Frame10_OptionsLecturer extends javax.swing.JPanel {
             }
         });
 
-        btnEnterNewClass.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
-        btnEnterNewClass.setText("Enter newest class");
-        btnEnterNewClass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnterNewClassActionPerformed(evt);
-            }
-        });
-
         btnHistory.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
-        btnHistory.setText("History");
+        btnHistory.setText("Classes");
         btnHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistoryActionPerformed(evt);
@@ -97,9 +88,7 @@ public class Frame10_OptionsLecturer extends javax.swing.JPanel {
                             .addComponent(btnStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                             .addComponent(btnInputScore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(64, 64, 64)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnEnterNewClass, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                            .addComponent(btnHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(238, 238, 238))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,14 +96,12 @@ public class Frame10_OptionsLecturer extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jLabel1)
-                .addGap(61, 61, 61)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEnterNewClass, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInputScore, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInputScore, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(btnStudentList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnStudentList, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(108, 108, 108))
@@ -137,11 +124,6 @@ public class Frame10_OptionsLecturer extends javax.swing.JPanel {
         MainUser.goBack(); // Frame8_ClassesLecturer
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnEnterNewClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterNewClassActionPerformed
-        // TODO add your handling code here:
-        MainUser.goToInclassLecturer();
-    }//GEN-LAST:event_btnEnterNewClassActionPerformed
-
     private void btnInputScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputScoreActionPerformed
         // TODO add your handling code here:
         MainUser.goToStudentList();
@@ -160,7 +142,6 @@ public class Frame10_OptionsLecturer extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnEnterNewClass;
     private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnInputScore;
     private javax.swing.JButton btnStudentList;

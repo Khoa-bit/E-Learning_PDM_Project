@@ -129,7 +129,4 @@ public class ConnectMySQL {
         return connectMySQL;
     }
 
-    public static void main(String[] args) {
-
-    }
 }
