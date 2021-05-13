@@ -6,6 +6,7 @@
 package Admin;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +22,19 @@ public class F8_Semester extends javax.swing.JPanel {
 
 
         initComponents();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Search sr = new Search();
+        //System.out.println(sr.searchAll("Subject", "name"));
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(sr.searchAll("semester", "semester_name"));
+        //String[] infos1 = ConnectMySQL.getConnectMySQL().get_query(sr.search("Major", "major_id", major_id));
+        for(int j=0; j<infos.length/7; j++){
+            String semester_name = infos[j*7 + 0];
+            String date_start = infos[7*j+1] + "/" + infos[7*j + 2] + "/" + infos[7*j + 3];
+            String date_end = infos[7*j+4] + "/" + infos[7*j + 5] + "/" + infos[7*j + 6];
+            model.addRow(new Object[]{semester_name,
+                date_start, date_end});
+        }
     }
 
     /**
@@ -56,7 +70,7 @@ public class F8_Semester extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Semester ID", "Semester name", "Date"
+                "Semester Name", "Date Start", "Date End"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

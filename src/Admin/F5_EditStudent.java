@@ -10,12 +10,16 @@ package Admin;
  * @author doquangminh
  */
 public class F5_EditStudent extends javax.swing.JPanel {
+    private Search sr;
+    private String SQL;
 
     /**
      * Creates new form EditLecturer
      */
     public F5_EditStudent() {
         initComponents();
+        sr = new Search();
+        SQL = new String();
     }
 
     /**
@@ -268,6 +272,16 @@ public class F5_EditStudent extends javax.swing.JPanel {
 
     private void btnSaveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveInfoActionPerformed
         // TODO add your handling code here:
+        String str = String.valueOf(jPasswordField1.getPassword());
+        //str = null;
+        SQL = sr.editStudent(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(), 
+                SearchBar2.getText(), SearchBar3.getText(), SearchBar6.getText(), SearchBar7.getText(), SearchBar4.getText());
+        System.out.println(SQL);
+        ConnectMySQL.getConnectMySQL().set_query(SQL);
+        if (str != null) {
+            SQL = sr.editStudentPassword(str, SearchBar6.getText());
+            ConnectMySQL.getConnectMySQL().set_query(SQL);
+        }
     }//GEN-LAST:event_btnSaveInfoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

@@ -18,12 +18,12 @@ public class MainAdmin {
     private static final Stack<JPanel> panelStack = new Stack();
     
     private static final F1_HomePage f1_HomePage = new F1_HomePage();
-    private static /*final*/ F2_Lecturer f2_Lecturer = new F2_Lecturer();
+    private static /*final*/ F2_Lecturer f2_Lecturer; //= new F2_Lecturer();
     private static final F3_EditLecturer f3_EditLecturerDetail = new F3_EditLecturer();
-    private static final F4_Student f4_Student = new F4_Student();
+    private static /*final*/ F4_Student f4_Student; //= new F4_Student();
     private static final F5_EditStudent f5_EditStudent = new F5_EditStudent();
     private static final F6_EditScoreDetail f6_EditScoreDetail = new F6_EditScoreDetail();
-    private static final F8_Semester f8_Semester = new F8_Semester();
+    private static /*final*/ F8_Semester f8_Semester; //= new F8_Semester();
     private static final F9_EditSemester f9_EditSemester = new F9_EditSemester();
     private static final FA_EditSemesterAdd fA_EditSemesterAdd = new FA_EditSemesterAdd();
     private static final FB_Department fB_Department = new FB_Department();
@@ -74,6 +74,7 @@ public class MainAdmin {
     }
 
     public static void goToStudent() {
+        f4_Student = new F4_Student();
         goToPanel(f4_Student);
     }
     
@@ -86,6 +87,7 @@ public class MainAdmin {
     }
     
     public static void goToSemester() {
+        f8_Semester = new F8_Semester();
         goToPanel(f8_Semester);
     }
     

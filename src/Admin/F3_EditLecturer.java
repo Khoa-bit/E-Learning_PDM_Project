@@ -255,7 +255,7 @@ public class F3_EditLecturer extends javax.swing.JPanel {
     private void btnSaveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveInfoActionPerformed
         // TODO add your handling code here:
         String str = String.valueOf(jPasswordField1.getPassword());
-        str = null;
+        //str = null;
         SQL = sr.editLecturer(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(), 
                 SearchBar2.getText(), SearchBar3.getText(), SearchBar6.getText(), SearchBar7.getText());
         System.out.println(SQL);

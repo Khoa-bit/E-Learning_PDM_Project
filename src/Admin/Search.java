@@ -133,8 +133,8 @@ public class Search {
         return str.toString();
     }
     public String editStudent(String fullname, String date_of_birth, String gender, String email, String phone, 
-            String password, String student_id, String department_id, String major_id) {
-        if (fullname == null && date_of_birth == null && gender == null && email == null && password == null 
+            String student_id, String department_id, String major_id) {
+        if (fullname == null && date_of_birth == null && gender == null && email == null 
                 && department_id == null && major_id == null || student_id == null) 
             throw new NullPointerException("Null value");
         StringBuilder firstname = new StringBuilder();
@@ -176,19 +176,21 @@ public class Search {
         }
         
         StringBuilder str = new StringBuilder();
-        str.append("Update lecturer Set ");
+        str.append("Update student Set ");
         boolean hasOne = false;
-        if (firstname.toString() != null) {
+        boolean firstNameExist = false;
+        if (firstname.toString() != null && firstname.toString().length() > 0) {
             str.append(" first_name = '").append(firstname.toString()).append("'");
             hasOne = true;
+            firstNameExist = true;
         }
-        if (middlename.toString() != null) {
+        if (middlename.toString() != null && firstNameExist) {
             if (hasOne)
                 str.append(", ");
             str.append("middle_name = '").append(middlename.toString()).append("'");
             hasOne = true;
         }
-        if (lastname.toString() != null) {
+        if (lastname.toString() != null && firstNameExist) {
             if (hasOne)
                 str.append(", ");
             str.append("last_name = '").append(lastname.toString()).append("'");
@@ -200,56 +202,67 @@ public class Search {
             str.append("gender = '").append(gender).append("'");
             hasOne = true;
         }
-        if (day.toString() != null) {
+        if (day.toString() != null && day.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("day = '").append(day.toString()).append("'");
             hasOne = true;
         }
-        if (month.toString() != null) {
+        if (month.toString() != null && month.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("month = '").append(month.toString()).append("'");
             hasOne = true;
         }
-        if (year.toString() != null) {
+        if (year.toString() != null && year.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("year = '").append(year.toString()).append("'");
             hasOne = true;
         }
-        if (email != null) {
+        if (email != null && email.length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("email = '").append(email).append("'");
             hasOne = true;
         }
-        if (phone != null) {
+        if (phone != null && phone.length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("phone = '").append(phone).append("'");
             hasOne = true;
         }
-        if (major_id != null) {
+        if (major_id != null && major_id.length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append(", major_id = '").append(major_id).append("'");
             hasOne = true;
         }
         str.append(" Where student_id = '").append(student_id).append("'");
-        if (password != null) {
+        /*if (password != null) {
             str.append("; Update student_username Set password = '").append(password)
                     .append("'").append(" Where student_id = '").append(student_id).append("'");
-        }
+        }*/
         /*if (department_id != null)
             str.append("; Update major Set department_id = ").append(department_id).append(" Where major_id = ")
                     .append(major_id);*/
-        str.append("; Commit;");
+        //str.append("; Commit;");
         /*SQL = "Begin Transaction; Update student Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
                 + ", last_name = " + lastname.toString() + ", gender = " + gender + ", date_birth = " + date_of_birth + ", email = " + email + ", phone = "
                 + phone + " Where student_id = " + student_id + "; Update student_username Set password = " + password 
                 + " Where student_id = " + student_id + "; Commit;";*/
         return str.toString();
+    }
+    public String editStudentPassword(String password, String student_id) {
+        StringBuilder str = new StringBuilder();
+        if (password != null && password.length() > 0) {
+            str.append("Update student_username Set password = '").append(password)
+                    .append("'").append(" Where student_id = '").append(student_id).append("'");
+            return str.toString();
+        }
+        else {
+            return null;
+        }
     }
     public String editLecturer(String fullname, String date_of_birth, String gender, String email, String phone, 
             String lecturer_id, String department_id) {
@@ -295,18 +308,20 @@ public class Search {
         }
         StringBuilder str = new StringBuilder();
         boolean hasOne = false;
+        boolean firstNameExist = false;
         str.append("Update Lecturer Set");
-        if (firstname.toString() != null) {
+        if (firstname.toString() != null && firstname.toString().length() > 0) {
             str.append(" first_name = '").append(firstname.toString()).append("'");
             hasOne = true;
+            firstNameExist = true;
         }
-        if (middlename.toString() != null) {
+        if (middlename.toString() != null && firstNameExist) {
             if (hasOne)
                 str.append(", ");
             str.append("middle_name = '").append(middlename.toString()).append("'");
             hasOne = true;
         }
-        if (lastname.toString() != null/* && lastname.toString().length() > 0*/) {
+        if (lastname.toString() != null && firstNameExist) {
             if (hasOne)
                 str.append(", ");
             str.append("last_name = '").append(lastname.toString()).append("'");
@@ -392,11 +407,11 @@ public class Search {
         int i = 0;
         if (date_start == null || date_end == null)
             throw new NullPointerException("Null values");
-        for (; date_start.charAt(i) == '/' && date_start != null; i++) {
+        for (;date_start != null && i < date_start.length() && date_start.charAt(i) != '/'; i++) {
             day_start.append(date_start.charAt(i));
         }
         i++;
-        for (; date_start.charAt(i) == '/' && date_start != null; i++) {
+        for (;date_start != null && i < date_start.length() && date_start.charAt(i) != '/'; i++) {
             month_start.append(date_start.charAt(i));
         }
         i++;
@@ -407,11 +422,11 @@ public class Search {
         StringBuilder month_end = new StringBuilder();
         StringBuilder year_end = new StringBuilder();
         i = 0;
-        for (; date_end.charAt(i) == '/' && date_end != null; i++) {
+        for (;date_end != null && i < date_end.length() && date_end.charAt(i) != '/'; i++) {
             day_end.append(date_end.charAt(i));
         }
         i++;
-        for (; date_end.charAt(i) == '/' && date_end != null; i++) {
+        for (;date_end != null && i < date_end.length() && date_end.charAt(i) != '/'; i++) {
             month_end.append(date_end.charAt(i));
         }
         i++;
@@ -421,35 +436,35 @@ public class Search {
         StringBuilder str = new StringBuilder();
         boolean hasOne = false;
         str.append("Update semester Set ");
-        if (day_start.toString() != null) {
+        if (day_start.toString() != null && day_start.toString().length() > 0) {
             str.append("day_start = '").append(day_start.toString()).append("'");
             hasOne = true;
         }
-        if (month_start.toString() != null) {
+        if (month_start.toString() != null && month_start.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("month_start = '").append(month_start.toString()).append("'");
             hasOne = true;
         }
-        if (year_start.toString() != null) {
+        if (year_start.toString() != null && year_start.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("year_start = '").append(year_start.toString()).append("'");
             hasOne = true;
         }
-        if (day_end.toString() != null) {
+        if (day_end.toString() != null && day_end.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("day_end = '").append(day_end.toString()).append("'");
             hasOne = true;
         }
-        if (month_end.toString() != null) {
+        if (month_end.toString() != null && month_end.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("month_end = '").append(month_end.toString()).append("'");
             hasOne = true;
         }
-        if (year_end.toString() != null) {
+        if (year_end.toString() != null && year_end.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
             str.append("year_end = '").append(year_end.toString()).append("'");
@@ -481,11 +496,11 @@ public class Search {
         StringBuilder month_start = new StringBuilder();
         StringBuilder year_start = new StringBuilder();
         int i = 0;
-        for (; date_start.charAt(i) == '/' && date_start != null; i++) {
+        for (;date_start != null && i < date_start.length() && date_start.charAt(i) != '/'; i++) {
             day_start.append(date_start.charAt(i));
         }
         i++;
-        for (; date_start.charAt(i) == '/' && date_start != null; i++) {
+        for (;date_start != null && i < date_start.length() && date_start.charAt(i) != '/'; i++) {
             month_start.append(date_start.charAt(i));
         }
         i++;
@@ -496,11 +511,11 @@ public class Search {
         StringBuilder month_end = new StringBuilder();
         StringBuilder year_end = new StringBuilder();
         i = 0;
-        for (; date_end.charAt(i) == '/' && date_end != null; i++) {
+        for (;date_end != null && i < date_end.length() && date_end.charAt(i) != '/'; i++) {
             day_end.append(date_end.charAt(i));
         }
         i++;
-        for (; date_end.charAt(i) == '/' && date_end != null; i++) {
+        for (;date_end != null && i < date_end.length() && date_end.charAt(i) != '/'; i++) {
             month_end.append(date_end.charAt(i));
         }
         i++;
@@ -508,9 +523,9 @@ public class Search {
             year_end.append(date_end.charAt(i));  
         }
         SQL = "Insert into semester(semester_name, day_start, month_start, year_start, day_end, month_end, year_end) "
-                + "Values ('" + semester_name + "', '" + day_start.toString() + "', '" + month_start.toString() + "', '"
-                + year_start.toString() + "', '" + day_end.toString() + "', '" + month_end.toString() + "', '"
-                + year_end.toString() + "')";
+                + "Values ('" + semester_name + "', '" + Integer.parseInt(day_start.toString()) + "', '" + 
+                Integer.parseInt(month_start.toString()) + "', '" + Integer.parseInt(year_start.toString()) + "', '" + 
+                Integer.parseInt(day_end.toString()) + "', '" + Integer.parseInt(month_end.toString()) + "', '" + Integer.parseInt(year_end.toString()) + "')";
         return SQL;
     }
             

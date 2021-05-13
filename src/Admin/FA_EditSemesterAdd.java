@@ -149,6 +149,11 @@ public class FA_EditSemesterAdd extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        Search sr = new Search();
+        System.out.println(sr.addSemester(SearchBar2.getText(), 
+                SearchBar1.getText(), SearchBar3.getText()));
+        ConnectMySQL.getConnectMySQL().set_query(sr.addSemester(SearchBar2.getText(), 
+                SearchBar1.getText(), SearchBar3.getText()));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

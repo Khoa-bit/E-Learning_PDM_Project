@@ -10,6 +10,8 @@ package Admin;
  * @author doquangminh
  */
 public class F9_EditSemester extends javax.swing.JPanel {
+    private String SQL = new String();
+    private Search sr = new Search();
 
     /**
      * Creates new form EditLecturer
@@ -167,6 +169,9 @@ public class F9_EditSemester extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        SQL = sr.editSemester(SearchBar2.getText(), SearchBar1.getText(), SearchBar3.getText());
+        System.out.println(SQL);
+        ConnectMySQL.getConnectMySQL().set_query(SQL);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

@@ -29,7 +29,7 @@ public class F2_Lecturer extends javax.swing.JPanel {
             String name = infos[11*j+1] + " " + infos[11*j + 2] + " " + infos[11*j + 3];
             String gender_id = infos[11*j+4];
             String gender = new String();
-            if (gender_id.charAt(0) == '1') 
+            if (gender_id.charAt(0) == '1' && gender_id.charAt(0) == 'F') 
                 gender = "Female";
             else
                 gender = "Male";
