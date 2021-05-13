@@ -300,13 +300,13 @@ public class Search {
             str.append(" first_name = '").append(firstname.toString()).append("'");
             hasOne = true;
         }
-        if (middlename.toString() != null && middlename.toString().length() > 0) {
+        if (middlename.toString() != null) {
             if (hasOne)
                 str.append(", ");
             str.append("middle_name = '").append(middlename.toString()).append("'");
             hasOne = true;
         }
-        if (lastname.toString() != null && lastname.toString().length() > 0) {
+        if (lastname.toString() != null/* && lastname.toString().length() > 0*/) {
             if (hasOne)
                 str.append(", ");
             str.append("last_name = '").append(lastname.toString()).append("'");
@@ -321,19 +321,19 @@ public class Search {
         if (day.toString() != null && day.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("day = '").append(day.toString()).append("'");
+            str.append("day_birth = '").append(day.toString()).append("'");
             hasOne = true;
         }
         if (month.toString() != null && month.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("month = '").append(month.toString()).append("'");
+            str.append("month_birth = '").append(month.toString()).append("'");
             hasOne = true;
         }
         if (year.toString() != null && year.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("year = '").append(year.toString()).append("'");
+            str.append("year_birth = '").append(year.toString()).append("'");
             hasOne = true;
         }
         if (email != null && email.length() > 0) {

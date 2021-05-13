@@ -259,10 +259,10 @@ public class F3_EditLecturer extends javax.swing.JPanel {
         SQL = sr.editLecturer(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(), 
                 SearchBar2.getText(), SearchBar3.getText(), SearchBar6.getText(), SearchBar7.getText());
         System.out.println(SQL);
-        ConnectMySQL.getConnectMySQL().run_query(SQL);
+        ConnectMySQL.getConnectMySQL().set_query(SQL);
         if (str != null) {
             SQL = sr.editLecturerPassword(str, SearchBar6.getText());
-            ConnectMySQL.getConnectMySQL().run_query(SQL);
+            ConnectMySQL.getConnectMySQL().set_query(SQL);
         }
         
     }//GEN-LAST:event_btnSaveInfoActionPerformed

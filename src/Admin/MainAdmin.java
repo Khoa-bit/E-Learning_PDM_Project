@@ -18,7 +18,7 @@ public class MainAdmin {
     private static final Stack<JPanel> panelStack = new Stack();
     
     private static final F1_HomePage f1_HomePage = new F1_HomePage();
-    private static final F2_Lecturer f2_Lecturer = new F2_Lecturer();
+    private static /*final*/ F2_Lecturer f2_Lecturer = new F2_Lecturer();
     private static final F3_EditLecturer f3_EditLecturerDetail = new F3_EditLecturer();
     private static final F4_Student f4_Student = new F4_Student();
     private static final F5_EditStudent f5_EditStudent = new F5_EditStudent();
@@ -65,6 +65,7 @@ public class MainAdmin {
     }
 
     public static void goToLecturer() {
+        f2_Lecturer = new F2_Lecturer();
         goToPanel(f2_Lecturer);
     }
     
