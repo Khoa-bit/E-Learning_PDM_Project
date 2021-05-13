@@ -506,10 +506,10 @@ public class Search {
         }
         //String connectionUrl = connectDB("root", "12345Abc");
         try (Connection con = connectDB(/*"jdbc:mysql://localhost=3306/E_Learning_Platform", */username, password); Statement stmt = con.createStatement();) {
-            SQL = "Select * From student_username Where student_id Like " + "'" + username 
+            SQL = "Select * From student_username Where student_id = " + "'" + username 
                     + "'";
             ResultSet rs = stmt.executeQuery(SQL);
-            if (rs.getObject(2) == password)
+            if (rs.getObject(2).equals(password))
                 return true;
         }
         catch (SQLException e) {
@@ -520,10 +520,10 @@ public class Search {
     public boolean loginLecture(String username, String password) {
         //String connectionUrl = connectDB("root", "12345Abc");
         try (Connection con = connectDB(/*"jdbc:mysql://localhost=3306/E_Learning_Platform", */username, password); Statement stmt = con.createStatement();) {
-            SQL = "Select * From lecturer_username Where lecturer_id Like " + "'" + username 
+            SQL = "Select * From lecturer_username Where lecturer_id = " + "'" + username 
                     + "'";
             ResultSet rs = stmt.executeQuery(SQL);
-            if (rs.getObject(2) == password)
+            if (rs.getObject(2).equals(password))
                 return true;
         }
         catch (SQLException e) {
