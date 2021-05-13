@@ -476,7 +476,14 @@ public class Search {
                 + year_end + " Where semester_name = " + semester_name;*/
         return str.toString();
     }
-    
+    public String editDepartment(String department_id, String department_name) {
+        if (department_id == null || department_name == null) {
+            throw new NullPointerException("Null value");
+        }
+        SQL = "Update department Set department_name = '" + department_name + "' Where department_id = '" 
+                + department_id + "'";
+        return SQL;
+    }
     
     
     public String addLoginStudent(String username, String password) {
@@ -526,6 +533,13 @@ public class Search {
                 + "Values ('" + semester_name + "', '" + Integer.parseInt(day_start.toString()) + "', '" + 
                 Integer.parseInt(month_start.toString()) + "', '" + Integer.parseInt(year_start.toString()) + "', '" + 
                 Integer.parseInt(day_end.toString()) + "', '" + Integer.parseInt(month_end.toString()) + "', '" + Integer.parseInt(year_end.toString()) + "')";
+        return SQL;
+    }
+    public String addDepartment(String department_id, String department_name) {
+        if (department_id == null || department_name == null)
+            throw new NullPointerException("Null value");
+        SQL = "Insert into department(department_id, department_name) Values ('" + 
+                department_id + "', '" + department_name + "')";
         return SQL;
     }
             
