@@ -121,6 +121,30 @@ public class ConnectMySQL {
         return failed;
     }
     
+    public void set_query(String query) {
+
+        try {
+            // connnect to database 'testdb'
+            Connection conn = getConnection(DB_URL, USER_NAME, PASSWORD);
+
+            // crate statement
+            Statement stmt = conn.createStatement();
+
+
+            stmt.executeUpdate(query);
+
+           
+            // close connection
+            conn.close();
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+    }
+    
     
     //Singleton
     private static final ConnectMySQL connectMySQL = new ConnectMySQL();

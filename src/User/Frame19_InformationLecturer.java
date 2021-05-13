@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -27,14 +29,18 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
             lecturer_id.setText(infos[0]);
             lecturer_id.setEditable(false);
             full_name.setText(infos[1] + " " + infos[2] + " " + infos[3]);
+            full_name.setEditable(false);
             date_of_birth.setText(infos[5] + "/" + infos[6] + "/" + infos[7]);
+            date_of_birth.setEditable(false);
             gender.setSelectedIndex(Integer.parseInt(infos[4]));
+            gender.setEnabled(false);
             email.setText(infos[8]);
             phone.setText(infos[9]);
             department.setText(infos[10]);
             department.setEditable(false);
             department.setEditable(false);
             username.setText(infos[0]);
+            username.setEditable(false);
             
             
             query = "SELECT password FROM Lecturer_Username WHERE lecturer_id = '"
@@ -65,7 +71,6 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         date_of_birth = new javax.swing.JTextField();
@@ -105,10 +110,6 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Note: Your Username, Lecturer ID and Department can not be edited!");
 
         jLabel2.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel2.setText("Full name");
@@ -215,18 +216,13 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
                                     .addComponent(lecturer_id)
                                     .addComponent(department)
                                     .addComponent(username))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 144, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(267, 267, 267)
-                    .addComponent(jLabel11)
-                    .addContainerGap(182, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,11 +269,6 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(674, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -299,7 +290,35 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MainUser.goBack(); // Frame4_HomeLecturer
+        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
+
+        } else {
+            String id = lecturer_id.getText();
+            String email_text = email.getText();
+            String phone_text = phone.getText();
+            String password_text = String.valueOf(password.getPassword());
+
+            String query = "UPDATE Lecturer SET email = '"
+                    + email_text + "', phone = '"
+                    + phone_text + "'"
+                    + " WHERE lecturer_id = '" + id + "';";
+            ConnectMySQL.getConnectMySQL().set_query(query);
+
+            if (password_text.equals("")) {
+                JOptionPane.showMessageDialog(null, "Password must "
+                        + "not be empty!");
+            } else {
+                query = "UPDATE Lecturer_Username SET password = '"
+                        + password_text + "'"
+                        + " WHERE lecturer_id = '" + id + "';";
+                ConnectMySQL.getConnectMySQL().set_query(query);
+                
+                MainUser.goBack(); // Frame4_HomeLecturer
+            }
+
+        }
+        
+        //MainUser.goBack(); // Frame4_HomeLecturer
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void full_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_full_nameActionPerformed
@@ -329,7 +348,6 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

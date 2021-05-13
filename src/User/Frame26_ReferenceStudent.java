@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,27 @@ public class Frame26_ReferenceStudent extends javax.swing.JPanel {
      */
     public Frame26_ReferenceStudent() {
         initComponents();
+        
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SELECT link, note FROM Reference WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String link_text = infos[2*j+0];
+                String note_text = infos[2*j+1];
+                
+                model.addRow( new Object[]{ link_text, note_text} );
+            }
+
+        }
     }
 
     /**

@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -16,43 +18,46 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
      */
     public Frame20_InformationStudent() {
         initComponents();
-        
-        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")){
-            
-        }else{
+
+        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
+
+        } else {
             String query = "SELECT * FROM Student WHERE student_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
-            
+
             student_id.setText(infos[0]);
             student_id.setEditable(false);
             full_name.setText(infos[1] + " " + infos[2] + " " + infos[3]);
+            full_name.setEditable(false);
             date_of_birth.setText(infos[5] + "/" + infos[6] + "/" + infos[7]);
+            date_of_birth.setEditable(false);
             gender.setSelectedIndex(Integer.parseInt(infos[4]));
+            gender.setEnabled(false);
             email.setText(infos[8]);
             phone.setText(infos[9]);
             major.setText(infos[10]);
             major.setEditable(false);
             department.setEditable(false);
             username.setText(infos[0]);
-            
-            
+            username.setEditable(false);
+
             query = "SELECT password FROM Student_Username WHERE student_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
-            
+
             password.setText(infos_2[0]);
-            
+
             query = "SELECT * FROM Major WHERE major_id = '"
                     + infos[10] + "';";
             String[] infos_3 = ConnectMySQL.getConnectMySQL().get_query(query);
-            
+
             major.setText(infos_3[1]);
-            
+
             query = "SELECT * FROM Department WHERE department_id = '"
                     + infos_3[2] + "';";
             String[] infos_4 = ConnectMySQL.getConnectMySQL().get_query(query);
-            
+
             department.setText(infos_4[1]);
         }
     }
@@ -298,7 +303,35 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MainUser.goBack(); // Frame5_HomeStudent
+        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
+
+        } else {
+            String id = student_id.getText();
+            String email_text = email.getText();
+            String phone_text = phone.getText();
+            String password_text = String.valueOf(password.getPassword());
+
+            String query = "UPDATE Student SET email = '"
+                    + email_text + "', phone = '"
+                    + phone_text + "'"
+                    + " WHERE student_id = '" + id + "';";
+            ConnectMySQL.getConnectMySQL().set_query(query);
+
+            if (password_text.equals("")) {
+                JOptionPane.showMessageDialog(null, "Password must "
+                        + "not be empty!");
+            } else {
+                query = "UPDATE Student_Username SET password = '"
+                        + password_text + "'"
+                        + " WHERE student_id = '" + id + "';";
+                ConnectMySQL.getConnectMySQL().set_query(query);
+                
+                MainUser.goBack(); // Frame5_HomeStudent
+            }
+
+        }
+
+        //MainUser.goBack(); // Frame5_HomeStudent
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

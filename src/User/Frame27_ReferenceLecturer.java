@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,27 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
      */
     public Frame27_ReferenceLecturer() {
         initComponents();
+
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SELECT link, note FROM Reference WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String link_text = infos[2*j+0];
+                String note_text = infos[2*j+1];
+                
+                model.addRow( new Object[]{ link_text, note_text} );
+            }
+
+        }
     }
 
     /**
@@ -34,6 +57,9 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -64,6 +90,11 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
         jButton2.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(51, 153, 255));
         jButton3.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
@@ -72,6 +103,14 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton4.setText("Refresh");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -87,6 +126,8 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -103,7 +144,8 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
 
@@ -129,11 +171,72 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
         MainUser.goToEditReference();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SELECT link, note FROM Reference WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String link_text = infos[2*j+0];
+                String note_text = infos[2*j+1];
+                
+                model.addRow( new Object[]{ link_text, note_text} );
+            }
+
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        int i = jTable1.getSelectedRow();
+        if(i != -1){
+            String link = String.valueOf(jTable1.getValueAt(i, 0));
+            
+            String query = "DELETE FROM Reference WHERE "
+                    + "link = '"
+                    + link
+                    + "';";
+            ConnectMySQL.getConnectMySQL().set_query(query);
+            
+            query = "SELECT link, note FROM Reference WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String link_text = infos[2*j+0];
+                String note_text = infos[2*j+1];
+                
+                model.addRow( new Object[]{ link_text, note_text} );
+            }
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

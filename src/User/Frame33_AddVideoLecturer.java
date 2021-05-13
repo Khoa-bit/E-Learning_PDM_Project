@@ -5,6 +5,10 @@
  */
 package User;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -16,7 +20,11 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
      */
     public Frame33_AddVideoLecturer() {
         initComponents();
+
+        path.setEditable(false);
+        path.setText("");
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,14 +44,16 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        title = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        note = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        path = new javax.swing.JTextArea();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Add Video");
 
@@ -52,6 +62,11 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
         jButton1.setText("Upload video");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel5.setText("Video:");
@@ -76,21 +91,21 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Title");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        title.setColumns(20);
+        title.setRows(5);
+        jScrollPane1.setViewportView(title);
 
         jLabel3.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Note");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        note.setColumns(20);
+        note.setRows(5);
+        jScrollPane2.setViewportView(note);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        path.setColumns(20);
+        path.setRows(5);
+        jScrollPane3.setViewportView(path);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,9 +125,7 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(70, 70, 70)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(365, 365, 365))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -169,13 +182,108 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        MainUser.goBack();// Frame31_VideoListLecturer
+        String path_info = path.getText();
+        String file_name = title.getText();
+        String note_text = note.getText();
+
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            if (path_info.equals("") || file_name.equals("")) {
+                JOptionPane.showMessageDialog(null, "Do not leave empty fields!");
+            } else {
+                String pre_query = "SELECT video_file_name FROM Video "
+                        + "WHERE session_id = '"
+                        + AppOpration.getAppOpration().what_session
+                        + "';";
+
+                String[] infos = ConnectMySQL.getConnectMySQL()
+                        .get_query(pre_query);
+
+                int count_duplication = 0;
+
+                for (int j = 0; j < infos.length; j++) {
+                    if (infos[j].equals(file_name)) {
+                        count_duplication++;
+                        break;
+                    }
+                }
+
+                if (count_duplication > 0) {
+                    JOptionPane.showMessageDialog(null, "Duplication title!");
+                } else {
+                    String extension = "";
+
+                    for (int i = 0; i < path_info.length(); i++) {
+                        if (path_info.charAt(i) == '.') {
+                            for (int j = i; j < path_info.length(); j++) {
+                                extension += path_info.charAt(j);
+                            }
+                            break;
+                        }
+                    }
+
+                    File file = new File(path_info);
+
+                    String session_id = AppOpration.getAppOpration().what_session;
+
+                    String newPath = "src\\Video\\" + session_id + "_"
+                            + file_name + extension;
+                    File file2 = new File(newPath);
+
+                    try {
+                        AppOpration.getAppOpration().copyFileUsingChannel(file, file2);
+                    } catch (Exception e) {
+                        System.out.println("Copy error!");
+                    }
+
+                    String query = "INSERT INTO Video (video_file_name, session_id, "
+                            + "note, video_extension_name) "
+                            + "VALUES ('" + file_name
+                            + "', '" + session_id + "', '"
+                            + note_text + "', '"
+                            + extension + "');";
+
+                    ConnectMySQL.getConnectMySQL().set_query(query);
+
+                    MainUser.goBack();// Frame31_VideoListLecturer
+                }
+            }
+
+        }
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         MainUser.goBack(); // Frame31_VideoListLecturer
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        if (f != null) {
+            String path_info = f.getAbsolutePath();
+
+            path.setText(path_info);
+
+            /*File file = new File(path);
+            String newPath = "src/main/java/avatar/" + file.getName();
+            File file2 = new File(newPath);
+            String userUsing = ManageData.getManageData().getWho_is_using_this_program();
+            ManageData.getManageData().setTemporaryAvatar(newPath);
+            
+            try{
+                ManageData.getManageData().copyFileUsingChannel(file, file2);
+            }
+            catch (Exception e){
+                System.out.println("");
+            }*/
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,8 +299,8 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea note;
+    private javax.swing.JTextArea path;
+    private javax.swing.JTextArea title;
     // End of variables declaration//GEN-END:variables
 }
