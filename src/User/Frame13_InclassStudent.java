@@ -20,7 +20,7 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().what_session.equals("-")) {
 
         } else {
-            String query = "SElECT class_id, day, month, year FROM Session WHERE session_id = '"
+            String query = "SElECT class_id, day, month, year FROM session WHERE session_id = '"
                     + AppOpration.getAppOpration().what_session + "';";
             
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
@@ -28,14 +28,14 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
             String class_id = infos[0];
             String date = infos[1] + "/" + infos[2] + "/" + infos[3];
             
-            query = "SELECT room, subject_id FROM CLass WHERE class_id = '"
+            query = "SELECT room, subject_id FROM cLass WHERE class_id = '"
                     + class_id + "';";
             
             String[] infos2 = ConnectMySQL.getConnectMySQL().get_query(query);
             String room = infos2[0];
             String subject_id = infos2[1];
             
-            query = "SELECT name FROM Subject WHERE subject_id = '"
+            query = "SELECT name FROM subject WHERE subject_id = '"
                     + subject_id + "';";
             
             String[] infos3 = ConnectMySQL.getConnectMySQL().get_query(query);
@@ -46,7 +46,7 @@ public class Frame13_InclassStudent extends javax.swing.JPanel {
             
             title.setText(title_text);
             
-            query = "SELECT note FROM Board WHERE session_id = '"
+            query = "SELECT note FROM board WHERE session_id = '"
                     + AppOpration.getAppOpration().what_session + "';";
             
             String[] infos4 = ConnectMySQL.getConnectMySQL().get_query(query);

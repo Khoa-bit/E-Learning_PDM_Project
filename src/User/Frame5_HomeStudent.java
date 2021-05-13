@@ -21,7 +21,7 @@ public class Frame5_HomeStudent extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
 
         } else {
-            String query = "SELECT * FROM Student WHERE student_id = '"
+            String query = "SELECT * FROM student WHERE student_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
 

@@ -25,10 +25,10 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
 
         } else {
-            String query = "SELECT * FROM Class WHERE lecturer_id = "
+            String query = "SELECT * FROM class WHERE lecturer_id = "
                     + "'"
                     + AppOpration.getAppOpration().who_is_using_this_app
-                    + "' AND Semester_name = '"
+                    + "' AND semester_name = '"
                     + AppOpration.getAppOpration().what_semester + "';";
             String[] infos_2 = ConnectMySQL.getConnectMySQL()
                     .get_query(query);
@@ -40,7 +40,7 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
                     String period = infos_2[8 * j + 2] + "-" + infos_2[8 * j + 3];
                     String day = infos_2[8 * j + 4];
 
-                    query = "SELECT name FROM Subject WHERE subject_id = '"
+                    query = "SELECT name FROM subject WHERE subject_id = '"
                             + infos_2[8 * j + 5] + "';";
 
                     String[] infos_3 = ConnectMySQL.getConnectMySQL()
@@ -215,10 +215,10 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
 
         } else {
-            String query = "SELECT * FROM Class WHERE lecturer_id = "
+            String query = "SELECT * FROM class WHERE lecturer_id = "
                     + "'"
                     + AppOpration.getAppOpration().who_is_using_this_app
-                    + "' AND Semester_name = '"
+                    + "' AND semester_name = '"
                     + AppOpration.getAppOpration().what_semester + "';";
             String[] infos_2 = ConnectMySQL.getConnectMySQL()
                     .get_query(query);
@@ -230,7 +230,7 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
                     String period = infos_2[8 * j + 2] + "-" + infos_2[8 * j + 3];
                     String day = infos_2[8 * j + 4];
 
-                    query = "SELECT name FROM Subject WHERE subject_id = '"
+                    query = "SELECT name FROM subject WHERE subject_id = '"
                             + infos_2[8 * j + 5] + "';";
 
                     String[] infos_3 = ConnectMySQL.getConnectMySQL()

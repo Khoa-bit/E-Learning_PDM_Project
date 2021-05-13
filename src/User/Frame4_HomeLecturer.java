@@ -20,7 +20,7 @@ public class Frame4_HomeLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
 
         } else {
-            String query = "SELECT * FROM Lecturer WHERE lecturer_id = '"
+            String query = "SELECT * FROM lecturer WHERE lecturer_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
 

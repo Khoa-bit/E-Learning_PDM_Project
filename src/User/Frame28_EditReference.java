@@ -145,7 +145,7 @@ public class Frame28_EditReference extends javax.swing.JPanel {
             if (AppOpration.getAppOpration().what_session.equals("-")) {
 
             } else {
-                String pre_query = "SELECT link FROM Reference "
+                String pre_query = "SELECT link FROM reference "
                         + "WHERE session_id = '"
                         + AppOpration.getAppOpration().what_session
                         + "';";
@@ -165,7 +165,7 @@ public class Frame28_EditReference extends javax.swing.JPanel {
                 if (count_duplication > 0) {
                     JOptionPane.showMessageDialog(null, "Duplication link!");
                 } else {
-                    String query = "INSERT INTO Reference(session_id, link, note) "
+                    String query = "INSERT INTO reference(session_id, link, note) "
                             + "VALUES ("
                             + "'" + AppOpration.getAppOpration().what_session + "'"
                             + ",'" + link_text + "'"

@@ -29,7 +29,7 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
             String class_id = AppOpration.getAppOpration()
                     .see_class_score_student;
 
-            String query = "SELECT * FROM Score WHERE class_id = '"
+            String query = "SELECT * FROM score WHERE class_id = '"
                     + class_id + "';";
 
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);

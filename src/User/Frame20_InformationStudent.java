@@ -22,7 +22,7 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
 
         } else {
-            String query = "SELECT * FROM Student WHERE student_id = '"
+            String query = "SELECT * FROM student WHERE student_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
 
@@ -42,19 +42,19 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
             username.setText(infos[0]);
             username.setEditable(false);
 
-            query = "SELECT password FROM Student_Username WHERE student_id = '"
+            query = "SELECT password FROM student_Username WHERE student_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
 
             password.setText(infos_2[0]);
 
-            query = "SELECT * FROM Major WHERE major_id = '"
+            query = "SELECT * FROM major WHERE major_id = '"
                     + infos[10] + "';";
             String[] infos_3 = ConnectMySQL.getConnectMySQL().get_query(query);
 
             major.setText(infos_3[1]);
 
-            query = "SELECT * FROM Department WHERE department_id = '"
+            query = "SELECT * FROM department WHERE department_id = '"
                     + infos_3[2] + "';";
             String[] infos_4 = ConnectMySQL.getConnectMySQL().get_query(query);
 
@@ -311,7 +311,7 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
             String phone_text = phone.getText();
             String password_text = String.valueOf(password.getPassword());
 
-            String query = "UPDATE Student SET email = '"
+            String query = "UPDATE student SET email = '"
                     + email_text + "', phone = '"
                     + phone_text + "'"
                     + " WHERE student_id = '" + id + "';";
@@ -321,7 +321,7 @@ public class Frame20_InformationStudent extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Password must "
                         + "not be empty!");
             } else {
-                query = "UPDATE Student_Username SET password = '"
+                query = "UPDATE student_username SET password = '"
                         + password_text + "'"
                         + " WHERE student_id = '" + id + "';";
                 ConnectMySQL.getConnectMySQL().set_query(query);

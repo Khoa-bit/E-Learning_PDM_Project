@@ -144,7 +144,7 @@ public class Frame3_LoginStudent extends javax.swing.JPanel {
         if (username.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill all fields!");
         } else {
-            String query = "SELECT * FROM Student_Username WHERE student_id = '"
+            String query = "SELECT * FROM student_username WHERE student_id = '"
                     + username + "';";
             String[] logins = ConnectMySQL.getConnectMySQL().get_query(query);
 

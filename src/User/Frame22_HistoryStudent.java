@@ -22,7 +22,7 @@ public class Frame22_HistoryStudent extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         
-        String query = "SELECT * FROM Session WHERE class_id = '" 
+        String query = "SELECT * FROM session WHERE class_id = '" 
                 + AppOpration.getAppOpration().what_class + "';";
         
         String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);

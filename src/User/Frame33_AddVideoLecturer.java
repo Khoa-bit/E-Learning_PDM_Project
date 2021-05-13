@@ -191,7 +191,7 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
             if (path_info.equals("") || file_name.equals("")) {
                 JOptionPane.showMessageDialog(null, "Do not leave empty fields!");
             } else {
-                String pre_query = "SELECT video_file_name FROM Video "
+                String pre_query = "SELECT video_file_name FROM video "
                         + "WHERE session_id = '"
                         + AppOpration.getAppOpration().what_session
                         + "';";
@@ -236,7 +236,7 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
                         System.out.println("Copy error!");
                     }
 
-                    String query = "INSERT INTO Video (video_file_name, session_id, "
+                    String query = "INSERT INTO video (video_file_name, session_id, "
                             + "note, video_extension_name) "
                             + "VALUES ('" + file_name
                             + "', '" + session_id + "', '"

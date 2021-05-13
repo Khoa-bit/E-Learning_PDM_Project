@@ -27,13 +27,13 @@ public class Frame18_StudentList extends javax.swing.JPanel {
         } else {
             String class_id = AppOpration.getAppOpration().what_class;
 
-            String query = "SELECT student_id FROM Student_List WHERE class_id = '"
+            String query = "SELECT student_id FROM student_list WHERE class_id = '"
                     + class_id + "';";
 
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
 
             for (int j = 0; j < infos.length; j++) {
-                query = "SELECT * FROM Student WHERE student_id = '"
+                query = "SELECT * FROM student WHERE student_id = '"
                         + infos[j] + "';";
                 String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
                 String student_id = infos_2[0];
@@ -47,13 +47,13 @@ public class Frame18_StudentList extends javax.swing.JPanel {
                     gender = "Female";
                 }
 
-                query = "SELECT * FROM Major WHERE major_id = '"
+                query = "SELECT * FROM major WHERE major_id = '"
                         + infos_2[10] + "';";
                 String[] infos_3 = ConnectMySQL.getConnectMySQL().get_query(query);
 
                 String major = infos_3[1];
 
-                query = "SELECT * FROM Department WHERE department_id = '"
+                query = "SELECT * FROM department WHERE department_id = '"
                         + infos_3[2] + "';";
                 String[] infos_4 = ConnectMySQL.getConnectMySQL().get_query(query);
 
@@ -225,13 +225,13 @@ public class Frame18_StudentList extends javax.swing.JPanel {
         } else {
             String class_id = AppOpration.getAppOpration().what_class;
 
-            String query = "SELECT student_id FROM Student_List WHERE class_id = '"
+            String query = "SELECT student_id FROM student_list WHERE class_id = '"
                     + class_id + "';";
 
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
 
             for (int j = 0; j < infos.length; j++) {
-                query = "SELECT * FROM Student WHERE student_id = '"
+                query = "SELECT * FROM student WHERE student_id = '"
                         + infos[j] + "';";
                 String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
                 String student_id = infos_2[0];
@@ -245,13 +245,13 @@ public class Frame18_StudentList extends javax.swing.JPanel {
                     gender = "Female";
                 }
 
-                query = "SELECT * FROM Major WHERE major_id = '"
+                query = "SELECT * FROM major WHERE major_id = '"
                         + infos_2[10] + "';";
                 String[] infos_3 = ConnectMySQL.getConnectMySQL().get_query(query);
 
                 String major = infos_3[1];
 
-                query = "SELECT * FROM Department WHERE department_id = '"
+                query = "SELECT * FROM department WHERE department_id = '"
                         + infos_3[2] + "';";
                 String[] infos_4 = ConnectMySQL.getConnectMySQL().get_query(query);
 

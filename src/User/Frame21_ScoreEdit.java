@@ -21,7 +21,7 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().student_id_to_input_score.equals("-")) {
 
         } else {
-            String query = "SELECT * FROM Student WHERE student_id = '"
+            String query = "SELECT * FROM student WHERE student_id = '"
                     + AppOpration.getAppOpration().student_id_to_input_score + "';";
             String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
             String student_id = infos_2[0];
@@ -32,7 +32,7 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
 
             title.setText(title_text);
 
-            query = "SELECT * FROM Score WHERE student_id = '"
+            query = "SELECT * FROM score WHERE student_id = '"
                     + AppOpration.getAppOpration().student_id_to_input_score 
                     + "' AND class_id = '"
                     + AppOpration.getAppOpration().what_class
@@ -338,7 +338,7 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
 
         if (counter == 6) {
 
-            String query = "UPDATE Score SET in_class_percentage = '"
+            String query = "UPDATE score SET in_class_percentage = '"
                     + in_class_percentage_text + "', midterm_percentage = '"
                     + midterm_percentage_text + "', final_percentage = '"
                     + final_percentage_text + "' WHERE class_id = '"
@@ -346,7 +346,7 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
 
             ConnectMySQL.getConnectMySQL().set_query(query);
 
-            query = "UPDATE Score SET in_class_score = '"
+            query = "UPDATE score SET in_class_score = '"
                     + in_class_score_text + "', midterm_score  = '"
                     + midterm_score_text + "', final_score  = '"
                     + final_score_text + "' WHERE class_id = '"

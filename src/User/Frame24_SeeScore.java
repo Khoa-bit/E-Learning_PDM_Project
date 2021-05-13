@@ -22,11 +22,11 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-        String query = "SELECT Class.class_id FROM Class, Student_List"
-                + " WHERE Class.semester_name = " + "'"
+        String query = "SELECT class.class_id FROM class, student_list"
+                + " WHERE class.semester_name = " + "'"
                 + AppOpration.getAppOpration().what_semester + "'"
-                + " AND Student_List.class_id "
-                + "= Class.class_id AND Student_List.student_id = '"
+                + " AND student_list.class_id "
+                + "= class.class_id AND student_list.student_id = '"
                 + AppOpration.getAppOpration().who_is_using_this_app + "';";
 
         String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
@@ -35,7 +35,7 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
         
         
         for (int j = 0; j < infos.length; j++) {
-            query = "SELECT * FROM Class WHERE class_id = "
+            query = "SELECT * FROM class WHERE class_id = "
                     + "'" + infos[j] + "';";
             String[] infos_2 = ConnectMySQL.getConnectMySQL()
                     .get_query(query);
@@ -45,7 +45,7 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
             String period = infos_2[2] + "-" + infos_2[3];
             String day = infos_2[4];
 
-            query = "SELECT name, credit FROM Subject WHERE subject_id = '"
+            query = "SELECT name, credit FROM subject WHERE subject_id = '"
                     + infos_2[5] + "';";
 
             String[] infos_3 = ConnectMySQL.getConnectMySQL()
@@ -68,7 +68,7 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
         float total_score = 0;
         
         for (int j = 0; j < infos.length; j++) {
-            query = "SELECT * FROM Score WHERE class_id = "
+            query = "SELECT * FROM score WHERE class_id = "
                     + "'" + infos[j] 
                     + "' AND student_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app

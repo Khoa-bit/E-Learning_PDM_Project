@@ -22,7 +22,7 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().what_session.equals("-")) {
 
         } else {
-            String query = "SELECT link, note FROM Reference WHERE "
+            String query = "SELECT link, note FROM reference WHERE "
                     + "session_id = '"
                     + AppOpration.getAppOpration().what_session
                     + "';";
@@ -177,7 +177,7 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().what_session.equals("-")) {
 
         } else {
-            String query = "SELECT link, note FROM Reference WHERE "
+            String query = "SELECT link, note FROM reference WHERE "
                     + "session_id = '"
                     + AppOpration.getAppOpration().what_session
                     + "';";
@@ -203,13 +203,13 @@ public class Frame27_ReferenceLecturer extends javax.swing.JPanel {
         if(i != -1){
             String link = String.valueOf(jTable1.getValueAt(i, 0));
             
-            String query = "DELETE FROM Reference WHERE "
+            String query = "DELETE FROM reference WHERE "
                     + "link = '"
                     + link
                     + "';";
             ConnectMySQL.getConnectMySQL().set_query(query);
             
-            query = "SELECT link, note FROM Reference WHERE "
+            query = "SELECT link, note FROM reference WHERE "
                     + "session_id = '"
                     + AppOpration.getAppOpration().what_session
                     + "';";

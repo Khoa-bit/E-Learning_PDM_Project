@@ -22,7 +22,7 @@ public class Frame6_SemesterLecturer extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         model.setRowCount(0);
         
-        String query = "SELECT * FROM Semester;";
+        String query = "SELECT * FROM semester;";
         String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
         
         for(int i=0; i<infos.length/7; i++){
@@ -188,7 +188,7 @@ public class Frame6_SemesterLecturer extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         model.setRowCount(0);
         
-        String query = "SELECT * FROM Semester;";
+        String query = "SELECT * FROM semester;";
         String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
         
         for(int i=0; i<infos.length/7; i++){

@@ -22,7 +22,7 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")){
             
         }else{
-            String query = "SELECT * FROM Lecturer WHERE lecturer_id = '"
+            String query = "SELECT * FROM lecturer WHERE lecturer_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
             
@@ -43,7 +43,7 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
             username.setEditable(false);
             
             
-            query = "SELECT password FROM Lecturer_Username WHERE lecturer_id = '"
+            query = "SELECT password FROM lecturer_username WHERE lecturer_id = '"
                     + AppOpration.getAppOpration().who_is_using_this_app + "';";
             String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
             
@@ -51,7 +51,7 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
             
 
             
-            query = "SELECT * FROM Department WHERE department_id = '"
+            query = "SELECT * FROM department WHERE department_id = '"
                     + infos[10] + "';";
             String[] infos_4 = ConnectMySQL.getConnectMySQL().get_query(query);
             
@@ -298,7 +298,7 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
             String phone_text = phone.getText();
             String password_text = String.valueOf(password.getPassword());
 
-            String query = "UPDATE Lecturer SET email = '"
+            String query = "UPDATE lecturer SET email = '"
                     + email_text + "', phone = '"
                     + phone_text + "'"
                     + " WHERE lecturer_id = '" + id + "';";
@@ -308,7 +308,7 @@ public class Frame19_InformationLecturer extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Password must "
                         + "not be empty!");
             } else {
-                query = "UPDATE Lecturer_Username SET password = '"
+                query = "UPDATE lecturer_username SET password = '"
                         + password_text + "'"
                         + " WHERE lecturer_id = '" + id + "';";
                 ConnectMySQL.getConnectMySQL().set_query(query);

@@ -25,7 +25,7 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().what_session.equals("-")) {
 
         } else {
-            String query = "SELECT video_file_name, note FROM Video WHERE "
+            String query = "SELECT video_file_name, note FROM video WHERE "
                     + "session_id = '"
                     + AppOpration.getAppOpration().what_session
                     + "';";
@@ -201,7 +201,7 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
             if (i != -1) {
                 String file_name = String.valueOf(jTable1.getValueAt(i, 0));
                 
-                String query = "SELECT video_extension_name FROM Video"
+                String query = "SELECT video_extension_name FROM video"
                         + " WHERE session_id = '"
                         + AppOpration.getAppOpration().what_session + "'"
                         + " AND video_file_name = '"
@@ -235,7 +235,7 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
             if (i != -1) {
                 String file_name = String.valueOf(jTable1.getValueAt(i, 0));
                 
-                String query = "SELECT video_extension_name FROM Video"
+                String query = "SELECT video_extension_name FROM video"
                         + " WHERE session_id = '"
                         + AppOpration.getAppOpration().what_session + "'"
                         + " AND video_file_name = '"
@@ -252,7 +252,7 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
                 video.delete();
                 
                 
-                query = "DELETE FROM Video WHERE session_id = '"
+                query = "DELETE FROM video WHERE session_id = '"
                         + AppOpration.getAppOpration().what_session
                         + "' AND video_file_name = '"
                         + file_name + "';";
@@ -267,7 +267,7 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().what_session.equals("-")) {
 
         } else {
-            String query = "SELECT video_file_name, note FROM Video WHERE "
+            String query = "SELECT video_file_name, note FROM video WHERE "
                     + "session_id = '"
                     + AppOpration.getAppOpration().what_session
                     + "';";
@@ -291,7 +291,7 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().what_session.equals("-")) {
 
         } else {
-            String query = "SELECT video_file_name, note FROM Video WHERE "
+            String query = "SELECT video_file_name, note FROM video WHERE "
                     + "session_id = '"
                     + AppOpration.getAppOpration().what_session
                     + "';";

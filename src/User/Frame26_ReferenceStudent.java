@@ -22,7 +22,7 @@ public class Frame26_ReferenceStudent extends javax.swing.JPanel {
         if (AppOpration.getAppOpration().what_session.equals("-")) {
 
         } else {
-            String query = "SELECT link, note FROM Reference WHERE "
+            String query = "SELECT link, note FROM reference WHERE "
                     + "session_id = '"
                     + AppOpration.getAppOpration().what_session
                     + "';";
