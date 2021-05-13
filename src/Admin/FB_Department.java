@@ -6,6 +6,7 @@
 package Admin;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +19,17 @@ public class FB_Department extends javax.swing.JPanel {
      */
     public FB_Department() {
         initComponents();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Search sr = new Search();
+        //System.out.println(sr.searchAll("Subject", "name"));
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(sr.searchAll("department", "department_id"));
+        //String[] infos1 = ConnectMySQL.getConnectMySQL().get_query(sr.search("Major", "major_id", major_id));
+        for(int j=0; j<infos.length/2; j++){
+            String department_id = infos[j*2 + 0];
+            String department_name = infos[2*j+1];
+            model.addRow(new Object[]{department_id, department_name});
+        }
     }
 
     /**
@@ -174,7 +186,7 @@ public class FB_Department extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        MainAdmin.goToEditMajor();
+        MainAdmin.goToEditDepartment();
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

@@ -10,6 +10,8 @@ package Admin;
  * @author doquangminh
  */
 public class FD_EditDepartmentAdd extends javax.swing.JPanel {
+    private String SQL = new String();
+    private Search sr = new Search();
 
     /**
      * Creates new form EditLecturer
@@ -129,6 +131,8 @@ public class FD_EditDepartmentAdd extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        SQL = sr.addDepartment(SearchBar.getText(), SearchBar2.getText());
+        ConnectMySQL.getConnectMySQL().set_query(SQL);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
