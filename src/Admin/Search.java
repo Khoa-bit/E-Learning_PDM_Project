@@ -141,11 +141,11 @@ public class Search {
         StringBuilder middlename = new StringBuilder();
         StringBuilder lastname = new StringBuilder();
         int i = 0;
-        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
             firstname.append(fullname.charAt(i));
         }
         i++;
-        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
             middlename.append(fullname.charAt(i));
         }
         i++;
@@ -154,28 +154,29 @@ public class Search {
             middlename = middlename.delete(0, 100);
         }
         else {
-            for (; i < fullname.length() && fullname != null; i++) {
+            for (; i < fullname.length() && fullname != null && i < fullname.length(); i++) {
                 lastname.append(fullname.charAt(i));
             }
         }
+        
         StringBuilder day = new StringBuilder();
         StringBuilder month = new StringBuilder();
         StringBuilder year = new StringBuilder();
         i = 0;
-        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
             day.append(date_of_birth.charAt(i));
         }
         i++;
-        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
             month.append(date_of_birth.charAt(i));
         }
         i++;
-        for (; i < date_of_birth.length() && date_of_birth != null; i++) {
+        for (;date_of_birth != null && i < date_of_birth.length() && i < date_of_birth.length(); i++) {
             year.append(date_of_birth.charAt(i));  
         }
         
         StringBuilder str = new StringBuilder();
-        str.append("Begin Transaction; Update lecturer Set");
+        str.append("Update lecturer Set ");
         boolean hasOne = false;
         if (firstname.toString() != null) {
             str.append(" first_name = '").append(firstname.toString()).append("'");
@@ -251,19 +252,19 @@ public class Search {
         return str.toString();
     }
     public String editLecturer(String fullname, String date_of_birth, String gender, String email, String phone, 
-            String password, String lecturer_id, String department_id, String major_id) {
+            String lecturer_id, String department_id) {
         if (fullname == null && date_of_birth == null && gender == null && email == null 
-                && password == null && department_id == null && major_id == null|| lecturer_id == null) 
+                && department_id == null|| lecturer_id == null) 
             throw new NullPointerException("Null value");
         StringBuilder firstname = new StringBuilder();
         StringBuilder middlename = new StringBuilder();
         StringBuilder lastname = new StringBuilder();
         int i = 0;
-        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
             firstname.append(fullname.charAt(i));
         }
         i++;
-        for (; fullname.charAt(i) == ' ' && fullname != null; i++) {
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
             middlename.append(fullname.charAt(i));
         }
         i++;
@@ -272,96 +273,109 @@ public class Search {
             middlename = middlename.delete(0, 100);
         }
         else {
-            for (; i < fullname.length() && fullname != null; i++) {
+            for (; i < fullname.length() && fullname != null && i < fullname.length(); i++) {
                 lastname.append(fullname.charAt(i));
             }
         }
+        
         StringBuilder day = new StringBuilder();
         StringBuilder month = new StringBuilder();
         StringBuilder year = new StringBuilder();
         i = 0;
-        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
             day.append(date_of_birth.charAt(i));
         }
         i++;
-        for (; date_of_birth.charAt(i) == '/' && date_of_birth != null; i++) {
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
             month.append(date_of_birth.charAt(i));
         }
         i++;
-        for (; i < date_of_birth.length() && date_of_birth != null; i++) {
+        for (;date_of_birth != null && i < date_of_birth.length() && i < date_of_birth.length(); i++) {
             year.append(date_of_birth.charAt(i));  
         }
         StringBuilder str = new StringBuilder();
         boolean hasOne = false;
-        str.append("Begin Transaction; Update lecturer Set");
-        if (firstname.toString() != null)
+        str.append("Update Lecturer Set");
+        if (firstname.toString() != null) {
             str.append(" first_name = '").append(firstname.toString()).append("'");
-        if (middlename.toString() != null) {
-            if (hasOne)
-                str.append(", ");
-            str.append(", middle_name = '").append(middlename.toString()).append("'");
             hasOne = true;
-            
         }
-        if (lastname.toString() != null) {
+        if (middlename.toString() != null && middlename.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append(", last_name = '").append(lastname.toString()).append("'");
+            str.append("middle_name = '").append(middlename.toString()).append("'");
+            hasOne = true;
+        }
+        if (lastname.toString() != null && lastname.toString().length() > 0) {
+            if (hasOne)
+                str.append(", ");
+            str.append("last_name = '").append(lastname.toString()).append("'");
             hasOne = true;
         }
         if (gender != null) {
             if (hasOne)
                 str.append(", ");
-            str.append(", gender = '").append(gender).append("'");
+            str.append("gender = '").append(gender).append("'");
             hasOne = true;
         }
-        if (day.toString() != null) {
+        if (day.toString() != null && day.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append(" day = '").append(day.toString()).append("'");
+            str.append("day = '").append(day.toString()).append("'");
             hasOne = true;
         }
-        if (month.toString() != null) {
+        if (month.toString() != null && month.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append(", month = '").append(month.toString()).append("'");
+            str.append("month = '").append(month.toString()).append("'");
             hasOne = true;
         }
-        if (year.toString() != null) {
+        if (year.toString() != null && year.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append(", year = '").append(year.toString()).append("'");
+            str.append("year = '").append(year.toString()).append("'");
             hasOne = true;
         }
-        if (email != null) {
+        if (email != null && email.length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append(", email = '").append(email).append("'");
+            str.append("email = '").append(email).append("'");
             hasOne = true;
         }
-        if (phone != null) {
+        if (phone != null && phone.length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append(", phone = '").append(phone).append("'");
+            str.append("phone = '").append(phone).append("'");
             hasOne = true;
         }
-        if (department_id != null) {
+        if (department_id != null && department_id.length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append(", major_id = '").append(major_id).append("'");
+            str.append("department_id = '").append(department_id).append("'");
             hasOne = true;
         }
         str.append(" Where lecturer_id = '").append(lecturer_id).append("'");
-        if (password != null)
+        
+        /*if (password != null && password.length() > 0)
             str.append("; Update lecturer_username Set password = '").append(password).append("'")
                     .append(" Where lecturer_id = '").append(lecturer_id).append("'").append("; Commit;");
         else
-            str.append("; Commit;");
+            str.append("; Commit;");*/
         /*SQL = "Begin Transaction; Update lecturer Set first_name = " + firstname.toString() + ", middle_name = " + middlename.toString()
                 + ", last_name = " + lastname + ", gender = " + gender + ", date_birth = " + date_of_birth + ", email = " + email + ", phone = "
                 + phone + " Where lecturer_id = " + lecturer_id + "; Update lecturer_username Set password = " + password 
                 + " Where lecturer_id = " + lecturer_id + "; Commit;";*/
         return str.toString();
+    }
+    public String editLecturerPassword(String password, String lecturer_id) {
+        StringBuilder str = new StringBuilder();
+        if (password != null && password.length() > 0){
+            str.append("Update lecturer_username Set password = '").append(password).append("'")
+                    .append(" Where lecturer_id = '").append(lecturer_id).append("'");
+            return str.toString();
+        }
+        else
+            return null;
     }
     /*
     public String seeScoreDetail(String subject) {

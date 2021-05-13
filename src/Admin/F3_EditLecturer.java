@@ -4,18 +4,21 @@
  * and open the template in the editor.
  */
 package Admin;
-
+import java.sql.*;
 /**
  *
  * @author doquangminh
  */
 public class F3_EditLecturer extends javax.swing.JPanel {
-
+    private Search sr;
+    private String SQL;
     /**
      * Creates new form EditLecturer
      */
     public F3_EditLecturer() {
         initComponents();
+        sr = new Search();
+        SQL = new String();
     }
 
     /**
@@ -251,6 +254,17 @@ public class F3_EditLecturer extends javax.swing.JPanel {
 
     private void btnSaveInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveInfoActionPerformed
         // TODO add your handling code here:
+        String str = String.valueOf(jPasswordField1.getPassword());
+        str = null;
+        SQL = sr.editLecturer(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(), 
+                SearchBar2.getText(), SearchBar3.getText(), SearchBar6.getText(), SearchBar7.getText());
+        System.out.println(SQL);
+        ConnectMySQL.getConnectMySQL().run_query(SQL);
+        if (str != null) {
+            SQL = sr.editLecturerPassword(str, SearchBar6.getText());
+            ConnectMySQL.getConnectMySQL().run_query(SQL);
+        }
+        
     }//GEN-LAST:event_btnSaveInfoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
