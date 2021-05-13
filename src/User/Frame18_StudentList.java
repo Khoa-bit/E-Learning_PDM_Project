@@ -42,8 +42,7 @@ public class Frame18_StudentList extends javax.swing.JPanel {
                 String date_of_birth = infos_2[5] + "/" + infos_2[6]
                         + "/" + infos_2[7];
                 String gender = "Male";
-                
-                
+
                 if (infos_2[4].equals("1")) {
                     gender = "Female";
                 }
@@ -203,21 +202,72 @@ public class Frame18_StudentList extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int i = jTable1.getSelectedRow();
-        if(i != -1){
+        if (i != -1) {
             String student_id = String.valueOf(jTable1.getValueAt(i, 0));
             //ManageData.getManageData().setBook_choosen(id);
-            
+
             AppOpration.getAppOpration().student_id_to_input_score = student_id;
-            
+
             MainUser.goToScoreEdit();
         }
-        
-        
+
         //MainUser.goToScoreEdit();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        String search_text = SearchBar.getText();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        if (AppOpration.getAppOpration().what_class.equals("-")) {
+
+        } else {
+            String class_id = AppOpration.getAppOpration().what_class;
+
+            String query = "SELECT student_id FROM Student_List WHERE class_id = '"
+                    + class_id + "';";
+
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            for (int j = 0; j < infos.length; j++) {
+                query = "SELECT * FROM Student WHERE student_id = '"
+                        + infos[j] + "';";
+                String[] infos_2 = ConnectMySQL.getConnectMySQL().get_query(query);
+                String student_id = infos_2[0];
+                String full_name = infos_2[1] + " " + infos_2[2]
+                        + " " + infos_2[3];
+                String date_of_birth = infos_2[5] + "/" + infos_2[6]
+                        + "/" + infos_2[7];
+                String gender = "Male";
+
+                if (infos_2[4].equals("1")) {
+                    gender = "Female";
+                }
+
+                query = "SELECT * FROM Major WHERE major_id = '"
+                        + infos_2[10] + "';";
+                String[] infos_3 = ConnectMySQL.getConnectMySQL().get_query(query);
+
+                String major = infos_3[1];
+
+                query = "SELECT * FROM Department WHERE department_id = '"
+                        + infos_3[2] + "';";
+                String[] infos_4 = ConnectMySQL.getConnectMySQL().get_query(query);
+
+                String department = infos_4[1];
+
+                if (student_id.toLowerCase().contains(search_text.toLowerCase())
+                        || full_name.toLowerCase()
+                                .contains(search_text.toLowerCase())) {
+                    model.addRow(new Object[]{student_id, full_name,
+                        date_of_birth, gender, major, department});
+                }
+
+                /*model.addRow(new Object[]{student_id, full_name,
+                    date_of_birth, gender, major, department});*/
+            }
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed

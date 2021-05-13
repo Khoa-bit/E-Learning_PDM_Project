@@ -28,6 +28,9 @@ public class AppOpration {
     
     public String video_path = "src\\Video\\2020279SCSES002S010_Algorithm_Lesson_1";
     
+    public String see_class_score_student = "-";
+    public String see_subject_score_student = "-";
+    
     
     public static void copyFileUsingChannel(File source, File dest) throws IOException {
         FileChannel sourceChannel = null;

@@ -35,13 +35,13 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
 
             if (infos_2.length > 0) {
                 for (int j = 0; j < infos_2.length / 8; j++) {
-                    String id = infos_2[8*j+0];
-                    String room = infos_2[8*j+1];
-                    String period = infos_2[8*j+2] + "-" + infos_2[8*j+3];
-                    String day = infos_2[8*j+4];
+                    String id = infos_2[8 * j + 0];
+                    String room = infos_2[8 * j + 1];
+                    String period = infos_2[8 * j + 2] + "-" + infos_2[8 * j + 3];
+                    String day = infos_2[8 * j + 4];
 
                     query = "SELECT name FROM Subject WHERE subject_id = '"
-                            + infos_2[8*j+5] + "';";
+                            + infos_2[8 * j + 5] + "';";
 
                     String[] infos_3 = ConnectMySQL.getConnectMySQL()
                             .get_query(query);
@@ -73,7 +73,7 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnClassDetail = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        SearchBar = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnFilter = new javax.swing.JButton();
 
@@ -140,7 +140,7 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,7 +159,7 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -191,22 +191,67 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
 
     private void btnClassDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassDetailActionPerformed
         // TODO add your handling code here:
-        
+
         int i = jTable1.getSelectedRow();
-        if(i != -1){
+        if (i != -1) {
             String class_id = String.valueOf(jTable1.getValueAt(i, 0));
             //ManageData.getManageData().setBook_choosen(id);
-            
+
             AppOpration.getAppOpration().what_class = class_id;
-            
+
             MainUser.goToOptionsLecturer();
         }
-        
+
         //MainUser.goToOptionsLecturer();
     }//GEN-LAST:event_btnClassDetailActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+
+        String search_text = SearchBar.getText();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        if (AppOpration.getAppOpration().who_is_using_this_app.equals("-")) {
+
+        } else {
+            String query = "SELECT * FROM Class WHERE lecturer_id = "
+                    + "'"
+                    + AppOpration.getAppOpration().who_is_using_this_app
+                    + "' AND Semester_name = '"
+                    + AppOpration.getAppOpration().what_semester + "';";
+            String[] infos_2 = ConnectMySQL.getConnectMySQL()
+                    .get_query(query);
+
+            if (infos_2.length > 0) {
+                for (int j = 0; j < infos_2.length / 8; j++) {
+                    String id = infos_2[8 * j + 0];
+                    String room = infos_2[8 * j + 1];
+                    String period = infos_2[8 * j + 2] + "-" + infos_2[8 * j + 3];
+                    String day = infos_2[8 * j + 4];
+
+                    query = "SELECT name FROM Subject WHERE subject_id = '"
+                            + infos_2[8 * j + 5] + "';";
+
+                    String[] infos_3 = ConnectMySQL.getConnectMySQL()
+                            .get_query(query);
+
+                    String subject = infos_3[0];
+
+                    if (id.toLowerCase().contains(search_text.toLowerCase())
+                            || subject.toLowerCase()
+                                    .contains(search_text.toLowerCase())) {
+                        model.addRow(new Object[]{id, subject,
+                            room, period, day});
+                    }
+
+                    /*model.addRow(new Object[]{id, subject,
+                        room, period, day});*/
+                }
+
+            }
+
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
@@ -215,6 +260,7 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField SearchBar;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnClassDetail;
     private javax.swing.JButton btnFilter;
@@ -223,6 +269,5 @@ public class Frame8_ClassesLecturer extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

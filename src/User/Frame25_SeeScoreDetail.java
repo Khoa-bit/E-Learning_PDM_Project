@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,63 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
      */
     public Frame25_SeeScoreDetail() {
         initComponents();
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        if (AppOpration.getAppOpration().see_class_score_student.equals("-")
+                || AppOpration.getAppOpration().see_subject_score_student.equals("-")) {
+
+        } else {
+            String class_id = AppOpration.getAppOpration()
+                    .see_class_score_student;
+
+            String query = "SELECT * FROM Score WHERE class_id = '"
+                    + class_id + "';";
+
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+            
+            String in_class_score = infos[2];
+            String midterm_score = infos[3];
+            String final_score = infos[4];
+            String in_class_percentage = infos[5];
+            String midterm_percentage = infos[6];
+            String final_percentage = infos[7];
+            
+            model.addRow(new Object[]{"In-class", in_class_score,
+                    in_class_percentage});
+            model.addRow(new Object[]{"Midterm", midterm_score,
+                    midterm_percentage});
+            model.addRow(new Object[]{"Final", final_score,
+                    final_percentage});
+            
+            subject.setText(AppOpration.getAppOpration()
+                    .see_subject_score_student);
+            
+            
+            //Calculate average
+            int in_class_score_int = 0;
+            int midterm_score_int = 0;
+            int final_score_int = 0;
+
+            in_class_score_int = Integer.parseInt(in_class_score);
+
+            midterm_score_int = Integer.parseInt(midterm_score);
+
+            final_score_int = Integer.parseInt(final_score);
+
+            int in_class_percentage_int
+                    = Integer.parseInt(in_class_percentage);
+            int midterm_percentage_int
+                    = Integer.parseInt(midterm_percentage);
+            int final_percentage_int = Integer.parseInt(final_percentage);
+
+            float average_result = in_class_score_int * in_class_percentage_int / 100
+                    + midterm_score_int * midterm_percentage_int / 100
+                    + final_score_int * final_percentage_int / 100;
+
+            average.setText(String.valueOf(average_result));
+        }
     }
 
     /**
@@ -29,13 +88,17 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        subject = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        average = new javax.swing.JTextField();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"In-class", null, null},
                 {"In-class", null, null},
@@ -47,7 +110,7 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
                 "Title", "Score", "Percentage (%)"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTable1);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("Back");
@@ -65,9 +128,12 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel2.setText("Subject:");
 
-        jTextField1.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Computer Architecture");
+        subject.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
+        subject.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        subject.setText("Computer Architecture");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Average:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,8 +148,13 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(average, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
@@ -95,11 +166,14 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(average, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(82, 82, 82))
         );
 
@@ -122,12 +196,14 @@ public class Frame25_SeeScoreDetail extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField average;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField subject;
     // End of variables declaration//GEN-END:variables
 }

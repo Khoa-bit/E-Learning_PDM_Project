@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,102 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
      */
     public Frame24_SeeScore() {
         initComponents();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        String query = "SELECT Class.class_id FROM Class, Student_List"
+                + " WHERE Class.semester_name = " + "'"
+                + AppOpration.getAppOpration().what_semester + "'"
+                + " AND Student_List.class_id "
+                + "= Class.class_id AND Student_List.student_id = '"
+                + AppOpration.getAppOpration().who_is_using_this_app + "';";
+
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+        int total_credit = 0;
+        
+        
+        for (int j = 0; j < infos.length; j++) {
+            query = "SELECT * FROM Class WHERE class_id = "
+                    + "'" + infos[j] + "';";
+            String[] infos_2 = ConnectMySQL.getConnectMySQL()
+                    .get_query(query);
+
+            String id = infos_2[0];
+            String room = infos_2[1];
+            String period = infos_2[2] + "-" + infos_2[3];
+            String day = infos_2[4];
+
+            query = "SELECT name, credit FROM Subject WHERE subject_id = '"
+                    + infos_2[5] + "';";
+
+            String[] infos_3 = ConnectMySQL.getConnectMySQL()
+                    .get_query(query);
+
+            String subject = infos_3[0];
+            String credit = infos_3[1];
+
+            total_credit += Integer.parseInt(credit);
+
+            model.addRow(new Object[]{id, subject,
+                credit});
+
+        }
+
+        credit.setText(String.valueOf(total_credit));
+        
+        
+        //Calculate average
+        float total_score = 0;
+        
+        for (int j = 0; j < infos.length; j++) {
+            query = "SELECT * FROM Score WHERE class_id = "
+                    + "'" + infos[j] 
+                    + "' AND student_id = '"
+                    + AppOpration.getAppOpration().who_is_using_this_app
+                    + "';";
+            String[] infos_4 = ConnectMySQL.getConnectMySQL()
+                    .get_query(query);
+            
+            
+            String in_class_score = infos_4[2];
+            String midterm_score = infos_4[3];
+            String final_score = infos_4[4];
+            String in_class_percentage = infos_4[5];
+            String midterm_percentage = infos_4[6];
+            String final_percentage = infos_4[7];
+            
+            
+            //Calculate average
+            int in_class_score_int = 0;
+            int midterm_score_int = 0;
+            int final_score_int = 0;
+
+            in_class_score_int = Integer.parseInt(in_class_score);
+
+            midterm_score_int = Integer.parseInt(midterm_score);
+
+            final_score_int = Integer.parseInt(final_score);
+
+            int in_class_percentage_int
+                    = Integer.parseInt(in_class_percentage);
+            int midterm_percentage_int
+                    = Integer.parseInt(midterm_percentage);
+            int final_percentage_int = Integer.parseInt(final_percentage);
+
+            float average_result = in_class_score_int * in_class_percentage_int / 100
+                    + midterm_score_int * midterm_percentage_int / 100
+                    + final_score_int * final_percentage_int / 100;
+            
+            String credit_string = String.valueOf(jTable1.getValueAt(j, 2)); 
+            int credit_int = Integer.parseInt(credit_string);
+            total_score += (average_result * credit_int);
+        }
+        total_score /= total_credit;
+        
+        average.setText(String.valueOf(total_score));
+
     }
 
     /**
@@ -35,8 +133,8 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        average = new javax.swing.JTextField();
+        credit = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -46,13 +144,13 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Subject ID", "Subject", "Credit", "Average"
+                "Class ID", "Subject name", "Credit"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -96,8 +194,8 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(credit)
+                            .addComponent(average, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -119,12 +217,12 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
+                            .addComponent(credit)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(average, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(75, 75, 75))
         );
 
@@ -142,7 +240,20 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MainUser.goToSeeScoreDetail();
+        int i = jTable1.getSelectedRow();
+        if (i != -1) {
+            String class_id = String.valueOf(jTable1.getValueAt(i, 0));
+            //ManageData.getManageData().setBook_choosen(id);
+
+            AppOpration.getAppOpration().see_class_score_student = class_id;
+            
+            String subject_name = String.valueOf(jTable1.getValueAt(i, 1));
+            AppOpration.getAppOpration().see_subject_score_student = subject_name;
+
+            MainUser.goToSeeScoreDetail();
+        }
+
+        //MainUser.goToSeeScoreDetail();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -150,8 +261,10 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
         MainUser.goBack(); // Frame11_OptionsStudent
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField average;
+    private javax.swing.JTextField credit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -160,7 +273,5 @@ public class Frame24_SeeScore extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

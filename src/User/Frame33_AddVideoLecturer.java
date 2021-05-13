@@ -24,7 +24,6 @@ public class Frame33_AddVideoLecturer extends javax.swing.JPanel {
         path.setEditable(false);
         path.setText("");
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
