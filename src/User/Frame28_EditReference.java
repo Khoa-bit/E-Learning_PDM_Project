@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,7 @@ public class Frame28_EditReference extends javax.swing.JPanel {
      */
     public Frame28_EditReference() {
         initComponents();
+
     }
 
     /**
@@ -31,14 +34,16 @@ public class Frame28_EditReference extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        link = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        note = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Add Reference");
 
@@ -46,17 +51,17 @@ public class Frame28_EditReference extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Link:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        link.setColumns(20);
+        link.setRows(5);
+        jScrollPane1.setViewportView(link);
 
         jLabel3.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Note:");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        note.setColumns(20);
+        note.setRows(5);
+        jScrollPane2.setViewportView(note);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
@@ -131,7 +136,49 @@ public class Frame28_EditReference extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MainUser.goBack(); // Frame27_ReferenceLecturer
+        String link_text = link.getText();
+        String note_text = note.getText();
+
+        if (link_text.equals("")) {
+            JOptionPane.showMessageDialog(null, "Link must not be empty!");
+        } else {
+            if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+            } else {
+                String pre_query = "SELECT link FROM Reference "
+                        + "WHERE session_id = '"
+                        + AppOpration.getAppOpration().what_session
+                        + "';";
+
+                String[] infos = ConnectMySQL.getConnectMySQL()
+                        .get_query(pre_query);
+
+                int count_duplication = 0;
+
+                for (int j = 0; j < infos.length; j++) {
+                    if (infos[j].equals(link_text)) {
+                        count_duplication++;
+                        break;
+                    }
+                }
+
+                if (count_duplication > 0) {
+                    JOptionPane.showMessageDialog(null, "Duplication link!");
+                } else {
+                    String query = "INSERT INTO Reference(session_id, link, note) "
+                            + "VALUES ("
+                            + "'" + AppOpration.getAppOpration().what_session + "'"
+                            + ",'" + link_text + "'"
+                            + ",'" + note_text + "');";
+                    ConnectMySQL.getConnectMySQL().set_query(query);
+
+                    MainUser.goBack(); // Frame27_ReferenceLecturer
+                }
+
+            }
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -149,7 +196,7 @@ public class Frame28_EditReference extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea link;
+    private javax.swing.JTextArea note;
     // End of variables declaration//GEN-END:variables
 }

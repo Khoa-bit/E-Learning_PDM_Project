@@ -5,6 +5,9 @@
  */
 package User;
 
+import java.io.File;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +19,29 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
      */
     public Frame31_VideoListLecturer() {
         initComponents();
+        
+        
+
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SELECT video_file_name, note FROM Video WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String video_name = infos[2 * j + 0];
+                String note_text = infos[2 * j + 1];
+
+                model.addRow(new Object[]{video_name, note_text});
+            }
+
+        }
     }
 
     /**
@@ -35,20 +61,23 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Video List");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Name"
+                "Name", "Note"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -89,6 +118,14 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton5.setText("Refresh");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -108,6 +145,8 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 94, Short.MAX_VALUE)))
@@ -125,7 +164,8 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(154, Short.MAX_VALUE))
         );
 
@@ -153,12 +193,122 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        MainUser.goToSeeVideoLecturer();
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+
+            int i = jTable1.getSelectedRow();
+            if (i != -1) {
+                String file_name = String.valueOf(jTable1.getValueAt(i, 0));
+                
+                String query = "SELECT video_extension_name FROM Video"
+                        + " WHERE session_id = '"
+                        + AppOpration.getAppOpration().what_session + "'"
+                        + " AND video_file_name = '"
+                        + file_name + "';";
+                
+                String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+                
+                
+                String video_path = "src\\Video\\"
+                    + AppOpration.getAppOpration().what_session
+                    + "_" + file_name + infos[0];
+                
+                AppOpration.getAppOpration().open_video_file(video_path);
+            }
+
+            
+
+        }
+
+        //MainUser.goToSeeVideoLecturer();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+
+            int i = jTable1.getSelectedRow();
+            if (i != -1) {
+                String file_name = String.valueOf(jTable1.getValueAt(i, 0));
+                
+                String query = "SELECT video_extension_name FROM Video"
+                        + " WHERE session_id = '"
+                        + AppOpration.getAppOpration().what_session + "'"
+                        + " AND video_file_name = '"
+                        + file_name + "';";
+                
+                String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+                
+                
+                String video_path = "src\\Video\\"
+                    + AppOpration.getAppOpration().what_session
+                    + "_" + file_name + infos[0];
+                
+                File video = new File(video_path);
+                video.delete();
+                
+                
+                query = "DELETE FROM Video WHERE session_id = '"
+                        + AppOpration.getAppOpration().what_session
+                        + "' AND video_file_name = '"
+                        + file_name + "';";
+                ConnectMySQL.getConnectMySQL().set_query(query);
+                
+            }
+
+            
+
+        }
+        
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SELECT video_file_name, note FROM Video WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String video_name = infos[2 * j + 0];
+                String note_text = infos[2 * j + 1];
+
+                model.addRow(new Object[]{video_name, note_text});
+            }
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SELECT video_file_name, note FROM Video WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String video_name = infos[2 * j + 0];
+                String note_text = infos[2 * j + 1];
+
+                model.addRow(new Object[]{video_name, note_text});
+            }
+
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -166,6 +316,7 @@ public class Frame31_VideoListLecturer extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

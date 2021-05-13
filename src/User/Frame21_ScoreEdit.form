@@ -53,14 +53,14 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jTextField2" min="-2" pref="209" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" min="-2" pref="209" max="-2" attributes="0"/>
+                                      <Component id="in_class_score" min="-2" pref="209" max="-2" attributes="0"/>
+                                      <Component id="midterm_score" min="-2" pref="209" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel5" min="-2" pref="184" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jTextField4" min="-2" pref="209" max="-2" attributes="0"/>
+                                  <Component id="final_score" min="-2" pref="209" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -69,7 +69,7 @@
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextField3" pref="209" max="32767" attributes="0"/>
+                                      <Component id="average" pref="209" max="32767" attributes="0"/>
                                       <Component id="jButton4" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -83,9 +83,9 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField7" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
-                              <Component id="jTextField6" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
-                              <Component id="jTextField8" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                              <Component id="midterm_percentage" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                              <Component id="final_percentage" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                              <Component id="in_class_percentage" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -108,7 +108,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLabel4" max="32767" attributes="0"/>
-                          <Component id="jTextField2" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="in_class_score" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="1" max="-2" attributes="0"/>
@@ -119,34 +119,34 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextField1" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="midterm_score" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField4" max="32767" attributes="0"/>
+                              <Component id="final_score" max="32767" attributes="0"/>
                               <Component id="jLabel5" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel3" max="32767" attributes="0"/>
-                              <Component id="jTextField3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="average" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jLabel10" max="32767" attributes="0"/>
-                              <Component id="jTextField8" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="in_class_percentage" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextField7" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="midterm_percentage" min="-2" pref="39" max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel9" max="32767" attributes="0"/>
-                              <Component id="jTextField6" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="final_percentage" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -178,18 +178,18 @@
             <Property name="text" type="java.lang.String" value="Final Score:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="midterm_score">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="in_class_score">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="in_class_scoreActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="average">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="final_score">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField6">
+        <Component class="javax.swing.JTextField" name="final_percentage">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -251,9 +251,9 @@
             <Property name="text" type="java.lang.String" value="Average:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField7">
+        <Component class="javax.swing.JTextField" name="midterm_percentage">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField8">
+        <Component class="javax.swing.JTextField" name="in_class_percentage">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>

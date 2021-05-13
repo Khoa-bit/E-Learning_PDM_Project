@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -29,6 +31,60 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
             String title_text = student_id + "    -    " + full_name;
 
             title.setText(title_text);
+
+            query = "SELECT * FROM Score WHERE student_id = '"
+                    + AppOpration.getAppOpration().student_id_to_input_score 
+                    + "' AND class_id = '"
+                    + AppOpration.getAppOpration().what_class
+                    + "';";
+
+            String[] infos_3 = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            in_class_score.setText(infos_3[2]);
+            midterm_score.setText(infos_3[3]);
+            final_score.setText(infos_3[4]);
+            in_class_percentage.setText(infos_3[5]);
+            midterm_percentage.setText(infos_3[6]);
+            final_percentage.setText(infos_3[7]);
+
+            String in_class_score_text = in_class_score.getText();
+            String midterm_score_text = midterm_score.getText();
+            String final_score_text = final_score.getText();
+            String in_class_percentage_text = in_class_percentage.getText();
+            String midterm_percentage_text = midterm_percentage.getText();
+            String final_percentage_text = final_percentage.getText();
+
+            if (in_class_score_text == null) {
+                in_class_score_text = "0";
+            }
+            if (midterm_score_text == null) {
+                midterm_score_text = "0";
+            }
+            if (final_score_text == null) {
+                final_score_text = "0";
+            }
+
+            int in_class_score_int = 0;
+            int midterm_score_int = 0;
+            int final_score_int = 0;
+
+            in_class_score_int = Integer.parseInt(in_class_score_text);
+
+            midterm_score_int = Integer.parseInt(midterm_score_text);
+
+            final_score_int = Integer.parseInt(final_score_text);
+
+            int in_class_percentage_int
+                    = Integer.parseInt(in_class_percentage_text);
+            int midterm_percentage_int
+                    = Integer.parseInt(midterm_percentage_text);
+            int final_percentage_int = Integer.parseInt(final_percentage_text);
+
+            float average_result = in_class_score_int * in_class_percentage_int / 100
+                    + midterm_score_int * midterm_percentage_int / 100
+                    + final_score_int * final_percentage_int / 100;
+
+            average.setText(String.valueOf(average_result));
         }
 
     }
@@ -45,11 +101,11 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        midterm_score = new javax.swing.JTextField();
+        in_class_score = new javax.swing.JTextField();
+        average = new javax.swing.JTextField();
+        final_score = new javax.swing.JTextField();
+        final_percentage = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -57,8 +113,8 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        midterm_percentage = new javax.swing.JTextField();
+        in_class_percentage = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -72,9 +128,9 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 24)); // NOI18N
         jLabel5.setText("Final Score:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        in_class_score.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                in_class_scoreActionPerformed(evt);
             }
         });
 
@@ -142,19 +198,19 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(in_class_score, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(midterm_score, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(final_score, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                    .addComponent(average, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(73, 73, 73)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -164,9 +220,9 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(midterm_percentage, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(final_percentage, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(in_class_percentage, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -183,7 +239,7 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(in_class_score, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -191,28 +247,28 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(midterm_score, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4)
+                            .addComponent(final_score)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(average, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(in_class_percentage, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(midterm_percentage, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(final_percentage, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(79, 79, 79)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +291,78 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        MainUser.goBack(); // Frame18_StudentList
+        String in_class_score_text = in_class_score.getText();
+        String midterm_score_text = midterm_score.getText();
+        String final_score_text = final_score.getText();
+        String in_class_percentage_text = in_class_percentage.getText();
+        String midterm_percentage_text = midterm_percentage.getText();
+        String final_percentage_text = final_percentage.getText();
+
+        //Checking for valid value
+        int counter = 0;
+        for (int i = 0; i <= 100; i++) {
+            String number = String.valueOf(i);
+
+            if (in_class_score_text.equals(number)) {
+                counter++;
+            }
+            if (midterm_score_text.equals(number)) {
+                counter++;
+            }
+            if (final_score_text.equals(number)) {
+                counter++;
+            }
+            if (in_class_percentage_text.equals(number)) {
+                counter++;
+            }
+            if (midterm_percentage_text.equals(number)) {
+                counter++;
+            }
+            if (final_percentage_text.equals(number)) {
+                counter++;
+            }
+        }
+
+        if (in_class_score_text.equals("")) {
+            counter++;
+            in_class_score_text = "0";
+        }
+        if (midterm_score_text.equals("")) {
+            counter++;
+            midterm_score_text = "0";
+        }
+        if (final_score_text.equals("")) {
+            counter++;
+            final_score_text = "0";
+        }
+
+        if (counter == 6) {
+
+            String query = "UPDATE Score SET in_class_percentage = '"
+                    + in_class_percentage_text + "', midterm_percentage = '"
+                    + midterm_percentage_text + "', final_percentage = '"
+                    + final_percentage_text + "' WHERE class_id = '"
+                    + AppOpration.getAppOpration().what_class + "';";
+
+            ConnectMySQL.getConnectMySQL().set_query(query);
+
+            query = "UPDATE Score SET in_class_score = '"
+                    + in_class_score_text + "', midterm_score  = '"
+                    + midterm_score_text + "', final_score  = '"
+                    + final_score_text + "' WHERE class_id = '"
+                    + AppOpration.getAppOpration().what_class + "'"
+                    + " AND student_id = '"
+                    + AppOpration.getAppOpration().student_id_to_input_score
+                    + "';";
+
+            ConnectMySQL.getConnectMySQL().set_query(query);
+
+            MainUser.goBack();
+        } else {
+            JOptionPane.showMessageDialog(null, "Input valid number!");
+        }
+
+        //MainUser.goBack(); // Frame18_StudentList
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -243,12 +370,17 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
         MainUser.goBack(); // Frame18_StudentList
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void in_class_scoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in_class_scoreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_in_class_scoreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField average;
+    private javax.swing.JTextField final_percentage;
+    private javax.swing.JTextField final_score;
+    private javax.swing.JTextField in_class_percentage;
+    private javax.swing.JTextField in_class_score;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -262,13 +394,8 @@ public class Frame21_ScoreEdit extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField midterm_percentage;
+    private javax.swing.JTextField midterm_score;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package User;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,27 @@ public class Frame29_VideoListStudent extends javax.swing.JPanel {
      */
     public Frame29_VideoListStudent() {
         initComponents();
+        
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+            String query = "SELECT video_file_name, note FROM Video WHERE "
+                    + "session_id = '"
+                    + AppOpration.getAppOpration().what_session
+                    + "';";
+            String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (int j = 0; j < infos.length / 2; j++) {
+                String video_name = infos[2*j+0];
+                String note_text = infos[2*j+1];
+                
+                model.addRow( new Object[]{ video_name, note_text} );
+            }
+
+        }
     }
 
     /**
@@ -34,19 +57,21 @@ public class Frame29_VideoListStudent extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Video List");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Name"
+                "Name", "Note"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -117,7 +142,36 @@ public class Frame29_VideoListStudent extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MainUser.goToVideoStudent(); // Frame13_InclassStudent
+        
+        if (AppOpration.getAppOpration().what_session.equals("-")) {
+
+        } else {
+
+            int i = jTable1.getSelectedRow();
+            if (i != -1) {
+                String file_name = String.valueOf(jTable1.getValueAt(i, 0));
+                
+                String query = "SELECT video_extension_name FROM Video"
+                        + " WHERE session_id = '"
+                        + AppOpration.getAppOpration().what_session + "'"
+                        + " AND video_file_name = '"
+                        + file_name + "';";
+                
+                String[] infos = ConnectMySQL.getConnectMySQL().get_query(query);
+                
+                
+                String video_path = "src\\Video\\"
+                    + AppOpration.getAppOpration().what_session
+                    + "_" + file_name + infos[0];
+                
+                AppOpration.getAppOpration().open_video_file(video_path);
+            }
+
+            
+
+        }
+        
+        //MainUser.goToVideoStudent(); // Frame13_InclassStudent
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
