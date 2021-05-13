@@ -6,6 +6,7 @@
 package Admin;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +22,19 @@ public class FH_Subject extends javax.swing.JPanel {
 
 
         initComponents();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Search sr = new Search();
+        //System.out.println(sr.searchAll("Subject", "name"));
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(sr.searchAll("Subject", "name"));
+        for(int j=0; j<infos.length/4; j++){
+            String subject_id = infos[j*4 + 0];
+            String name = infos[4*j+1];
+            String credit = infos[4*j+2];
+            String department_id = infos[4*j + 3];
+            model.addRow(new Object[]{subject_id, name,
+                credit, department_id});
+        }
     }
 
     /**
@@ -50,13 +64,13 @@ public class FH_Subject extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("SF Pro Text", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Subject ID", "Subject name", "Date"
+                "Subject ID", "Subject name", "credit", "department_id"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

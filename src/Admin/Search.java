@@ -20,7 +20,7 @@ public class Search {
         if (Ordered_column == null)
             SQL = "Select * From " + Table_name;
         else {
-            SQL = "Select * From " + Table_name + " Ordered by " + Ordered_column + " ASC";
+            SQL = "Select * From " + Table_name + " Order by " + Ordered_column + " ASC;";
         }
         return SQL;
     }
