@@ -504,6 +504,32 @@ public class Search {
         str.append(" Where major_id = '").append(major_id).append("'");
         return str.toString();
     }
+    public String editSubject(String subject_id, String name, String credit, String department_id) {
+        if (subject_id == null || (name == null && department_id == null && credit == null)) {
+            throw new NullPointerException("Null value");
+        }
+        StringBuilder str = new StringBuilder();
+        boolean hasOne = false;
+        str.append("Update subject Set ");
+        if (name != null && name.length() > 0) {
+            str.append("name = '").append(name).append("'");
+            hasOne = true;
+        }
+        if (credit != null && credit.length() > 0) {
+            if (hasOne)
+                str.append(", ");
+            str.append("credit = '").append(credit).append("'");
+            hasOne = true;
+        }
+        if (department_id != null && department_id.length() > 0) {
+            if (hasOne)
+                str.append(", ");
+            str.append("department_id = '").append(department_id).append("'");
+            hasOne = true;
+        }
+        str.append(" Where subject_id = '").append(subject_id).append("'");
+        return str.toString();
+    }
     
     public String addLoginStudent(String username, String password) {
         if (username == null || password == null) 
@@ -567,6 +593,14 @@ public class Search {
         }
         SQL = "Insert into major(major_id, major_name, department_id) Values ('" +
                 major_id + "', '" + major_name + "', '" + department_id + "')";
+        return SQL;
+    }
+    public String addSubject(String subject_id, String name, String credit, String department_id) {
+        if (subject_id == null || name == null || department_id == null || credit == null) {
+            throw new NullPointerException("Null value");
+        }
+        SQL = "Insert into subject(subject_id, name, credit, department_id) Values ('" +
+                subject_id + "', '" + name + "', '" + credit + "', '" + department_id + "')";
         return SQL;
     }
             

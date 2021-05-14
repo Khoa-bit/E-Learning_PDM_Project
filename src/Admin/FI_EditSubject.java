@@ -10,6 +10,8 @@ package Admin;
  * @author doquangminh
  */
 public class FI_EditSubject extends javax.swing.JPanel {
+    private String SQL = new String();
+    private Search sr = new Search();
 
     /**
      * Creates new form EditLecturer
@@ -164,6 +166,8 @@ public class FI_EditSubject extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        SQL = sr.editSubject(SearchBar.getText(), SearchBar2.getText(), SearchBar1.getText(), SearchBar3.getText());
+        ConnectMySQL.getConnectMySQL().set_query(SQL);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
