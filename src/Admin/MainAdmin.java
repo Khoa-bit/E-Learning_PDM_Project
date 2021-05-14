@@ -29,7 +29,7 @@ public class MainAdmin {
     private static /*final*/ FB_Department fB_Department; //= new FB_Department();
     private static final FC_EditDepartment fC_EditDepartment = new FC_EditDepartment();
     private static final FD_EditDepartmentAdd fD_EditDepartmentAdd = new FD_EditDepartmentAdd();
-    private static final FE_Major fE_Major = new FE_Major();
+    private static /*final*/ FE_Major fE_Major; //= new FE_Major();
     private static final FF_EditMajor fF_EditMajor = new FF_EditMajor();
     private static final FG_EditMajorAdd fG_EditMajorAdd = new FG_EditMajorAdd();
     private static final FH_Subject fH_Subject = new FH_Subject();
@@ -113,6 +113,7 @@ public class MainAdmin {
     }
 
     public static void goToMajor() {
+        fE_Major = new FE_Major();
         goToPanel(fE_Major);
     }
     

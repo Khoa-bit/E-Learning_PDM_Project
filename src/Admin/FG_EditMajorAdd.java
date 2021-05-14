@@ -10,6 +10,8 @@ package Admin;
  * @author doquangminh
  */
 public class FG_EditMajorAdd extends javax.swing.JPanel {
+    private String SQL = new String();
+    private Search sr = new Search();
 
     /**
      * Creates new form EditLecturer
@@ -127,6 +129,8 @@ public class FG_EditMajorAdd extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        SQL = sr.addMajor(SearchBar.getText(), SearchBar2.getText(), SearchBar4.getText());
+        ConnectMySQL.getConnectMySQL().set_query(SQL);
     }//GEN-LAST:event_btnAddActionPerformed
 
 

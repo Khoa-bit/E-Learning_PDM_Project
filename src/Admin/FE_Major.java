@@ -6,6 +6,7 @@
 package Admin;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +19,18 @@ public class FE_Major extends javax.swing.JPanel {
      */
     public FE_Major() {
         initComponents();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Search sr = new Search();
+        //System.out.println(sr.searchAll("Subject", "name"));
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(sr.searchAll("major", "major_id"));
+        //String[] infos1 = ConnectMySQL.getConnectMySQL().get_query(sr.search("Major", "major_id", major_id));
+        for(int j=0; j<infos.length/3; j++){
+            String major_id = infos[j*3 + 0];
+            String major_name = infos[3*j+1];
+            String department_id = infos[3*j+2];
+            model.addRow(new Object[]{major_id, major_name, department_id});
+        }
     }
 
     /**

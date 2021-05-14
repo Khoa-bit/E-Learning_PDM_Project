@@ -484,7 +484,26 @@ public class Search {
                 + department_id + "'";
         return SQL;
     }
-    
+    public String editMajor(String major_id, String major_name, String department_id) {
+        if (major_id == null || (major_name == null && department_id == null)) {
+            throw new NullPointerException("Null value");
+        }
+        StringBuilder str = new StringBuilder();
+        str.append("Update major Set ");
+        boolean hasOne = false;
+        if (major_name != null && major_name.length() > 0) {
+            str.append("major_name = '").append(major_name).append("'");
+            hasOne = true;
+        }
+        if (department_id != null && department_id.length() > 0) {
+            if (hasOne)
+                str.append(", ");
+            str.append("department_id = '").append(department_id).append("'");
+            hasOne = true;
+        }
+        str.append(" Where major_id = '").append(major_id).append("'");
+        return str.toString();
+    }
     
     public String addLoginStudent(String username, String password) {
         if (username == null || password == null) 
@@ -540,6 +559,14 @@ public class Search {
             throw new NullPointerException("Null value");
         SQL = "Insert into department(department_id, department_name) Values ('" + 
                 department_id + "', '" + department_name + "')";
+        return SQL;
+    }
+    public String addMajor(String major_id, String major_name, String department_id) {
+        if (major_id == null || major_name == null || department_id == null) {
+            throw new NullPointerException("Null value");
+        }
+        SQL = "Insert into major(major_id, major_name, department_id) Values ('" +
+                major_id + "', '" + major_name + "', '" + department_id + "')";
         return SQL;
     }
             
