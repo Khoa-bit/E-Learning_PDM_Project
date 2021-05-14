@@ -133,9 +133,9 @@ public class Search {
         return str.toString();
     }
     public String editStudent(String fullname, String date_of_birth, String gender, String email, String phone, 
-            String student_id, String department_id, String major_id) {
+            String student_id, String major_id) {
         if (fullname == null && date_of_birth == null && gender == null && email == null 
-                && department_id == null && major_id == null || student_id == null) 
+                 && major_id == null || student_id == null) 
             throw new NullPointerException("Null value");
         StringBuilder firstname = new StringBuilder();
         StringBuilder middlename = new StringBuilder();
