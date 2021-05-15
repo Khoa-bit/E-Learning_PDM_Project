@@ -656,6 +656,17 @@ public class Search {
                 + Integer.parseInt(year.toString()) + "', '" + email + "', '" + phone + "', '" + major_id + "')";
         return SQL;
     }
+    public String addStudentPassword(String password, String student_id) {
+        //StringBuilder str = new StringBuilder();
+        if (password != null && password.length() > 0) {
+            SQL = "Insert into student_username(student_id, password) Values ('" + student_id + "', '" + password
+                    + "')";
+            return SQL;
+        }
+        else {
+            return null;
+        }
+    }
     public String addLecturer(String fullname, String date_of_birth, String gender, String email, String phone, 
             String lecturer_id, String department_id) {
         if (fullname == null || date_of_birth == null || gender == null || email == null || phone == null
@@ -707,6 +718,17 @@ public class Search {
                 + Integer.parseInt(day.toString()) + "', '" + Integer.parseInt(month.toString()) + "', '"
                 + Integer.parseInt(year.toString()) + "', '" + email + "', '" + phone + "', '" + department_id + "')";
         return SQL;
+    }
+    public String addLecturerPassword(String password, String lecturer_id) {
+        //StringBuilder str = new StringBuilder();
+        if (password != null && password.length() > 0) {
+            SQL = "Insert into lecturer_username(lecturer_id, password) Values ('" + lecturer_id + "', '" + password
+                    + "')";
+            return SQL;
+        }
+        else {
+            return null;
+        }
     }
             
     public boolean loginStudent(String username, String password) {
