@@ -206,19 +206,19 @@ public class Search {
         if (day.toString() != null && day.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("day = '").append(day.toString()).append("'");
+            str.append("day = '").append(Integer.parseInt(day.toString())).append("'");
             hasOne = true;
         }
         if (month.toString() != null && month.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("month = '").append(month.toString()).append("'");
+            str.append("month = '").append(Integer.parseInt(month.toString())).append("'");
             hasOne = true;
         }
         if (year.toString() != null && year.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("year = '").append(year.toString()).append("'");
+            str.append("year = '").append(Integer.parseInt(year.toString())).append("'");
             hasOne = true;
         }
         if (email != null && email.length() > 0) {
@@ -337,19 +337,19 @@ public class Search {
         if (day.toString() != null && day.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("day_birth = '").append(day.toString()).append("'");
+            str.append("day_birth = '").append(Integer.parseInt(day.toString())).append("'");
             hasOne = true;
         }
         if (month.toString() != null && month.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("month_birth = '").append(month.toString()).append("'");
+            str.append("month_birth = '").append(Integer.parseInt(month.toString())).append("'");
             hasOne = true;
         }
         if (year.toString() != null && year.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("year_birth = '").append(year.toString()).append("'");
+            str.append("year_birth = '").append(Integer.parseInt(year.toString())).append("'");
             hasOne = true;
         }
         if (email != null && email.length() > 0) {
@@ -438,37 +438,37 @@ public class Search {
         boolean hasOne = false;
         str.append("Update semester Set ");
         if (day_start.toString() != null && day_start.toString().length() > 0) {
-            str.append("day_start = '").append(day_start.toString()).append("'");
+            str.append("day_start = '").append(Integer.parseInt(day_start.toString())).append("'");
             hasOne = true;
         }
         if (month_start.toString() != null && month_start.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("month_start = '").append(month_start.toString()).append("'");
+            str.append("month_start = '").append(Integer.parseInt(month_start.toString())).append("'");
             hasOne = true;
         }
         if (year_start.toString() != null && year_start.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("year_start = '").append(year_start.toString()).append("'");
+            str.append("year_start = '").append(Integer.parseInt(year_start.toString())).append("'");
             hasOne = true;
         }
         if (day_end.toString() != null && day_end.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("day_end = '").append(day_end.toString()).append("'");
+            str.append("day_end = '").append(Integer.parseInt(day_end.toString())).append("'");
             hasOne = true;
         }
         if (month_end.toString() != null && month_end.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("month_end = '").append(month_end.toString()).append("'");
+            str.append("month_end = '").append(Integer.parseInt(month_end.toString())).append("'");
             hasOne = true;
         }
         if (year_end.toString() != null && year_end.toString().length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("year_end = '").append(year_end.toString()).append("'");
+            str.append("year_end = '").append(Integer.parseInt(year_end.toString())).append("'");
             hasOne = true;
         }
         str.append(" Where semester_name = '").append(semester_name).append("'");
@@ -602,6 +602,110 @@ public class Search {
         }
         SQL = "Insert into subject(subject_id, name, credit, department_id) Values ('" +
                 subject_id + "', '" + name + "', '" + credit + "', '" + department_id + "')";
+        return SQL;
+    }
+    public String addStudent(String fullname, String date_of_birth, String gender, String email, String phone, 
+            String student_id, String major_id) {
+        if (fullname == null || date_of_birth == null || gender == null || email == null || phone == null
+                || student_id == null || major_id == null || fullname.length() <=0 || date_of_birth.length() <=0 
+                || gender.length() <=0 || email.length() <=0 || phone.length() <=0 || student_id.length() <=0
+                || major_id.length() <=0) {
+            throw new NullPointerException("Null value");
+        }
+        StringBuilder firstname = new StringBuilder();
+        StringBuilder middlename = new StringBuilder();
+        StringBuilder lastname = new StringBuilder();
+        int i = 0;
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
+            firstname.append(fullname.charAt(i));
+        }
+        i++;
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
+            middlename.append(fullname.charAt(i));
+        }
+        i++;
+        if (i >= fullname.length() - 1) {
+            lastname = middlename;
+            middlename = middlename.delete(0, 100);
+        }
+        else {
+            for (; i < fullname.length() && fullname != null && i < fullname.length(); i++) {
+                lastname.append(fullname.charAt(i));
+            }
+        }
+        
+        StringBuilder day = new StringBuilder();
+        StringBuilder month = new StringBuilder();
+        StringBuilder year = new StringBuilder();
+        i = 0;
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
+            day.append(date_of_birth.charAt(i));
+        }
+        i++;
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
+            month.append(date_of_birth.charAt(i));
+        }
+        i++;
+        for (;date_of_birth != null && i < date_of_birth.length() && i < date_of_birth.length(); i++) {
+            year.append(date_of_birth.charAt(i));  
+        }
+        SQL = "Insert into student(student_id, first_name, middle_name, last_name, gender, date_birth, month_birth, "
+                + "year_birth, email, phone, major_id) Values ('" + student_id + "', '" + firstname.toString() + "', '"
+                + middlename.toString() + "', '" + lastname.toString() + "', '" + gender + "', '" 
+                + Integer.parseInt(day.toString()) + "', '" + Integer.parseInt(month.toString()) + "', '"
+                + Integer.parseInt(year.toString()) + "', '" + email + "', '" + phone + "', '" + major_id + "')";
+        return SQL;
+    }
+    public String addLecturer(String fullname, String date_of_birth, String gender, String email, String phone, 
+            String lecturer_id, String department_id) {
+        if (fullname == null || date_of_birth == null || gender == null || email == null || phone == null
+                || lecturer_id == null || department_id == null || fullname.length() <=0 || date_of_birth.length() <=0 
+                || gender.length() <=0 || email.length() <=0 || phone.length() <=0 || lecturer_id.length() <=0
+                || department_id.length() <=0) {
+            throw new NullPointerException("Null value");
+        }
+        StringBuilder firstname = new StringBuilder();
+        StringBuilder middlename = new StringBuilder();
+        StringBuilder lastname = new StringBuilder();
+        int i = 0;
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
+            firstname.append(fullname.charAt(i));
+        }
+        i++;
+        for (;fullname != null && i < fullname.length() && fullname.charAt(i) != ' '; i++) {
+            middlename.append(fullname.charAt(i));
+        }
+        i++;
+        if (i >= fullname.length() - 1) {
+            lastname = middlename;
+            middlename = middlename.delete(0, 100);
+        }
+        else {
+            for (; i < fullname.length() && fullname != null && i < fullname.length(); i++) {
+                lastname.append(fullname.charAt(i));
+            }
+        }
+        
+        StringBuilder day = new StringBuilder();
+        StringBuilder month = new StringBuilder();
+        StringBuilder year = new StringBuilder();
+        i = 0;
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
+            day.append(date_of_birth.charAt(i));
+        }
+        i++;
+        for (;date_of_birth != null && i < date_of_birth.length() && date_of_birth.charAt(i) != '/'; i++) {
+            month.append(date_of_birth.charAt(i));
+        }
+        i++;
+        for (;date_of_birth != null && i < date_of_birth.length() && i < date_of_birth.length(); i++) {
+            year.append(date_of_birth.charAt(i));  
+        }
+        SQL = "Insert into lecturer(lecturer_id, first_name, middle_name, last_name, gender, date_birth, month_birth, "
+                + "year_birth, email, phone, department_id) Values ('" + lecturer_id + "', '" + firstname.toString() + "', '"
+                + middlename.toString() + "', '" + lastname.toString() + "', '" + gender + "', '" 
+                + Integer.parseInt(day.toString()) + "', '" + Integer.parseInt(month.toString()) + "', '"
+                + Integer.parseInt(year.toString()) + "', '" + email + "', '" + phone + "', '" + department_id + "')";
         return SQL;
     }
             
