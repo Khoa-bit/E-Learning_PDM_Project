@@ -241,12 +241,12 @@ public class F6_EditLecturerAdd extends javax.swing.JPanel {
         // TODO add your handling code here:
         String str = String.valueOf(jPasswordField1.getPassword());
         //str = null;
-        SQL = sr.editLecturer(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(),
+        SQL = sr.addLecturer(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(),
             SearchBar2.getText(), SearchBar3.getText(), SearchBar6.getText(), SearchBar7.getText());
         System.out.println(SQL);
         ConnectMySQL.getConnectMySQL().set_query(SQL);
         if (str != null) {
-            SQL = sr.editLecturerPassword(str, SearchBar6.getText());
+            SQL = sr.addLecturerPassword(str, SearchBar6.getText());
             ConnectMySQL.getConnectMySQL().set_query(SQL);
         }
 

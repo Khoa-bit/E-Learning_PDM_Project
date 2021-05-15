@@ -247,14 +247,14 @@ public class F7_EditStudentAdd extends javax.swing.JPanel {
         // TODO add your handling code here:
         String str = String.valueOf(jPasswordField1.getPassword());
         //str = null;
-        SQL = sr.editStudent(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(),
+        SQL = sr.addStudent(SearchBar.getText(), SearchBar1.getText(), jComboBox1.getSelectedItem().toString(),
             SearchBar2.getText(), SearchBar3.getText(), SearchBar6.getText(), SearchBar4.getText());
         System.out.println(SQL);
         ConnectMySQL.getConnectMySQL().set_query(SQL);
-        if (str != null && str.length() > 0) {
-            SQL = sr.editStudentPassword(str, SearchBar6.getText());
+        //if (str != null && str.length() > 0) {
+            SQL = sr.addStudentPassword(str, SearchBar6.getText());
             ConnectMySQL.getConnectMySQL().set_query(SQL);
-        }
+        //}
     }//GEN-LAST:event_btnSaveInfoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
