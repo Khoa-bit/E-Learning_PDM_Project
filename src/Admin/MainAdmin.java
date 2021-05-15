@@ -22,7 +22,8 @@ public class MainAdmin {
     private static final F3_EditLecturer f3_EditLecturerDetail = new F3_EditLecturer();
     private static /*final*/ F4_Student f4_Student; //= new F4_Student();
     private static final F5_EditStudent f5_EditStudent = new F5_EditStudent();
-    private static final F6_EditScoreDetail f6_EditScoreDetail = new F6_EditScoreDetail();
+    private static final F6_EditLecturerAdd f6_EditLecturerAdd = new F6_EditLecturerAdd();
+    private static final F7_EditStudentAdd f7_EditStudentAdd = new F7_EditStudentAdd();
     private static /*final*/ F8_Semester f8_Semester; //= new F8_Semester();
     private static final F9_EditSemester f9_EditSemester = new F9_EditSemester();
     private static final FA_EditSemesterAdd fA_EditSemesterAdd = new FA_EditSemesterAdd();
@@ -82,8 +83,11 @@ public class MainAdmin {
         goToPanel(f5_EditStudent);
     }
 
-    public static void goToEditScoreDetail() {
-        goToPanel(f6_EditScoreDetail);
+    public static void goToEditLecturerAdd() {
+        goToPanel(f6_EditLecturerAdd);
+    }
+    public static void goToEditStudentAdd() {
+        goToPanel(f7_EditStudentAdd);
     }
     
     public static void goToSemester() {
