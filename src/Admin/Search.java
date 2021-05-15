@@ -30,7 +30,8 @@ public class Search {
         else {
             if (Table_name == null)
                 throw new NullPointerException("Table_name is null");
-            SQL = "Select * From " + Table_name + " Where " + Column_name + " Like '" + Search_txt + "'";
+            SQL = "Select * From " + Table_name + " Where " + Column_name + " Like '" + Search_txt + "%'" + 
+                    " Order by " + Column_name + " ASC;";
         }
         return SQL;
     }

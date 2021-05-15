@@ -153,6 +153,19 @@ public class FH_Subject extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Search sr = new Search();
+        //System.out.println(sr.searchAll("Subject", "name"));
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(sr.search("subject", "name", SearchBar.getText()));
+        for(int j=0; j<infos.length/4; j++){
+            String subject_id = infos[j*4 + 0];
+            String name = infos[4*j+1];
+            String credit = infos[4*j+2];
+            String department_id = infos[4*j + 3];
+            model.addRow(new Object[]{subject_id, name,
+                credit, department_id});
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

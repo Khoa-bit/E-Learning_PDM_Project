@@ -160,6 +160,30 @@ public class F2_Lecturer extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Search sr = new Search();
+        //System.out.println(sr.searchAll("Subject", "name"));
+        String[] infos = ConnectMySQL.getConnectMySQL().get_query(sr.search("lecturer", "lecturer_id", SearchBar.getText()));
+        //String[] infos1 = ConnectMySQL.getConnectMySQL().get_query(sr.search("Major", "major_id", major_id));
+        for(int j=0; j<infos.length/11; j++){
+            String lecturer_id = infos[j*11 + 0];
+            String name = infos[11*j+1] + " " + infos[11*j + 2] + " " + infos[11*j + 3];
+            String gender_id = infos[11*j+4];
+            String gender = new String();
+            if (gender_id.charAt(0) == '1' && gender_id.charAt(0) == 'F') 
+                gender = "Female";
+            else
+                gender = "Male";
+            String date_of_birth = infos[11*j + 5] + "/" + infos[11*j + 6] + "/" + infos[11*j + 7];
+            //String email = infos[11*j + 8];
+            //String phone = infos[11*j + 9];
+            String department_id = infos[11*j + 10];
+            String[] infos2 = ConnectMySQL.getConnectMySQL().get_query(sr.getValue("department", "department_id", department_id));
+            String department = infos2[1];
+            model.addRow(new Object[]{lecturer_id, name,
+                date_of_birth, gender, department});
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
