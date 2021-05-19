@@ -122,7 +122,38 @@ public class QueryBox extends javax.swing.JFrame {
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
         // TODO add your handling code here:
-        
+        if (txtQuery.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Please input query string!", "Message", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        txtResult.selectAll();
+        txtResult.replaceSelection("");
+        String connectionUrl = "jdbc:sqlserver://localhost:3306;databaseName=E_Learning_Platform;user=root;password=123456";
+        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+            String SQL = txtQuery.getText();
+            ResultSet rs = stmt.executeQuery(SQL);
+ 
+            // Iterate through the data in the result set and display it.
+            // process query results
+            StringBuilder results = new StringBuilder();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numberOfColumns = metaData.getColumnCount();
+            for (int i = 1; i <= numberOfColumns; i++) {
+                results.append(metaData.getColumnName(i)).append("\t");
+            }
+            results.append("\n");
+            //  Metadata
+            while (rs.next()) {
+                for (int i = 1; i <= numberOfColumns; i++) {
+                    results.append(rs.getObject(i)).append("\t");
+                }
+                results.append("\n");
+            }
+            txtResult.setText(results.toString());
+        } // Handle any errors that may have occurred.
+        catch (SQLException e) {            
+            txtResult.setText(e.getMessage());
+        }
     }//GEN-LAST:event_btnRunActionPerformed
 
     /**
