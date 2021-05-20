@@ -310,7 +310,7 @@ public class Search {
         StringBuilder str = new StringBuilder();
         boolean hasOne = false;
         boolean firstNameExist = false;
-        str.append("Update Lecturer Set");
+        str.append("Update Lecturer Set ");
         if (firstname.toString() != null && firstname.toString().length() > 0) {
             str.append(" first_name = '").append(firstname.toString()).append("'");
             hasOne = true;
@@ -328,10 +328,10 @@ public class Search {
             str.append("last_name = '").append(lastname.toString()).append("'");
             hasOne = true;
         }
-        if (gender != null) {
+        if (gender != null && gender.length() > 0) {
             if (hasOne)
                 str.append(", ");
-            str.append("gender = '").append(gender).append("'");
+            str.append("gender = '").append(gender.toString()).append("'");
             hasOne = true;
         }
         if (day.toString() != null && day.toString().length() > 0) {
