@@ -25,10 +25,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="SearchBar" min="-2" pref="350" max="-2" attributes="0"/>
+                      <Component id="SearchBar" min="-2" pref="365" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -36,18 +36,18 @@
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="SearchBar1" min="-2" pref="350" max="-2" attributes="0"/>
-                          <Component id="SearchBar2" min="-2" pref="350" max="-2" attributes="0"/>
-                          <Component id="SearchBar3" min="-2" pref="350" max="-2" attributes="0"/>
+                          <Component id="SearchBar2" alignment="1" pref="365" max="32767" attributes="0"/>
+                          <Component id="SearchBar1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="SearchBar3" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnBack" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="btnSave" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="105" max="32767" attributes="0"/>
                       <Component id="btnDelete" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
               </Group>
